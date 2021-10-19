@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257758174807896479}
   m_LocalRotation: {x: -0, y: -0.7061619, z: -0, w: 0.7080504}
-  m_LocalPosition: {x: 7.631068, y: -3.2742262, z: 3.381589}
-  m_LocalScale: {x: 1.80825, y: 1, z: 3.8043}
+  m_LocalPosition: {x: 7.63, y: -3.2742262, z: 3.66}
+  m_LocalScale: {x: 2.192503, y: 1, z: 4.908308}
   m_Children: []
   m_Father: {fileID: 1441399741842479971}
   m_RootOrder: 0
@@ -295,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441399741842479971}
   m_Layer: 0
-  m_Name: pref.Blockout
+  m_Name: pref.Blockout.RealWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
