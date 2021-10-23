@@ -94,7 +94,7 @@ MonoBehaviour:
     showEyeDropper: 1
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.5, g: 0.115566045, b: 0.17650513, a: 1}
+    m_Value: {r: 0.5019608, g: 0.15446939, b: 0.1137255, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -120,10 +120,10 @@ MonoBehaviour:
     m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 113.2
+    m_Value: 100
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 32.87
+    m_Value: 91.2
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
     max: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: 2.5
     min: 0.1
   denoisingMode:
     m_OverrideState: 1
@@ -348,3 +348,53 @@ MonoBehaviour:
   - {fileID: -2687218664907830754}
   - {fileID: -6484707144529745485}
   - {fileID: -8237887922995284594}
+  - {fileID: 3384006664040429371}
+--- !u!114 &3384006664040429371
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
+  m_Name: HDShadowSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  maxShadowDistance:
+    m_OverrideState: 1
+    m_Value: 726
+    min: 0
+  directionalTransmissionMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  cascadeShadowSplitCount:
+    m_OverrideState: 1
+    m_Value: 4
+    min: 1
+    max: 4
+  cascadeShadowSplit0:
+    m_OverrideState: 1
+    m_Value: 0.05
+  cascadeShadowSplit1:
+    m_OverrideState: 1
+    m_Value: 0.15
+  cascadeShadowSplit2:
+    m_OverrideState: 1
+    m_Value: 0.3
+  cascadeShadowBorder0:
+    m_OverrideState: 1
+    m_Value: -0
+  cascadeShadowBorder1:
+    m_OverrideState: 1
+    m_Value: 0
+  cascadeShadowBorder2:
+    m_OverrideState: 1
+    m_Value: 0
+  cascadeShadowBorder3:
+    m_OverrideState: 1
+    m_Value: 0
