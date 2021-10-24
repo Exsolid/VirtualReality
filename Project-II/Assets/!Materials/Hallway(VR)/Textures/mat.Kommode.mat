@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_Schrank
+  m_Name: mat.Kommode
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _MASKMAP _NORMALMAP _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 42916edd759cdaf4ab3717c1e59c2933, type: 3}
+        m_Texture: {fileID: 2800000, guid: 347be96a314ef1e4fbfdb8c53a40f4c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -65,15 +65,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 42916edd759cdaf4ab3717c1e59c2933, type: 3}
+        m_Texture: {fileID: 2800000, guid: 347be96a314ef1e4fbfdb8c53a40f4c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: 2f9159b498c127a41984e5871aa66eb9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 79259afad72b7d94284454e2dd047dfa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: bdd18f47028c84247ba3237fdf98e47b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 649fb6a0090b6c94faaa54eb0f2e6b3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
@@ -118,7 +118,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AORemapMax: 1
-    - _AORemapMin: 0
+    - _AORemapMin: 0.71338856
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
@@ -173,10 +173,10 @@ Material:
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
     - _Metallic: 0
-    - _MetallicRemapMax: 1
-    - _MetallicRemapMin: 0
+    - _MetallicRemapMax: 0.7538307
+    - _MetallicRemapMin: 0.3365988
     - _NormalMapSpace: 0
-    - _NormalScale: 1
+    - _NormalScale: 0.41
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
@@ -188,8 +188,8 @@ Material:
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
     - _Smoothness: 0.5
-    - _SmoothnessRemapMax: 1
-    - _SmoothnessRemapMin: 0
+    - _SmoothnessRemapMax: 0.7287114
+    - _SmoothnessRemapMin: 0.44209996
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
@@ -226,9 +226,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6705134, g: 0.58508366, b: 0.7169812, a: 1}
+    - _BaseColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.6705134, g: 0.58508366, b: 0.7169812, a: 1}
+    - _Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
@@ -243,7 +243,7 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &9177234518254742855
+--- !u!114 &4062612044246121584
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
