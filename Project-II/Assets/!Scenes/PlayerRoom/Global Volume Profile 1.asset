@@ -40,13 +40,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9192171, y: 0.9301996, z: 1, w: 0}
+    m_Value: {x: 0.9028992, y: 0.91488343, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.93828744, y: 0.94448614, z: 1, w: 0}
+    m_Value: {x: 0.96357656, y: 0.96341985, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.98129284, z: 0.9856688, w: 0}
+    m_Value: {x: 1, y: 0.95176786, z: 0.99100775, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     max: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 2.5
+    m_Value: 3
     min: 0.1
   denoisingMode:
     m_OverrideState: 1
@@ -241,7 +241,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   procedural:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   flowmap:
     m_OverrideState: 0
@@ -250,12 +250,12 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   scrollDirection:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
     min: 0
     max: 360
   scrollSpeed:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 2
     min: 0
   enableBackplate:
