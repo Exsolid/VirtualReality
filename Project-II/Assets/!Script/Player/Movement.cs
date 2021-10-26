@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
     private void turnView()
     {
         Vector2 mouse = input.actions[viewActionName].ReadValue<Vector2>();
-        Quaternion rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.rotation.eulerAngles.x+ mouse.y *-1, gameObject.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
-        gameObject.transform.rotation = Quaternion.Euler((Mathf.Abs(rotation.eulerAngles.x - 180) < 115) ? gameObject.transform.rotation.eulerAngles.x : rotation.eulerAngles.x,  rotation.eulerAngles.y, 0);
+        Quaternion rotation = Quaternion.RotateTowards(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1, Camera.main.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
+        Camera.main.transform.rotation = Quaternion.Euler((Mathf.Abs(rotation.eulerAngles.x - 180) < 115) ? Camera.main.transform.rotation.eulerAngles.x : rotation.eulerAngles.x,  rotation.eulerAngles.y, 0);
     }
 
     private void move()
@@ -41,8 +41,8 @@ public class Movement : MonoBehaviour
         Vector2 movement = input.actions[movementActionName].ReadValue<Vector2>();
 
         controller.enabled = true;
-        controller.Move(Time.deltaTime * movementSpeed * movement.y * Camera.main.transform.forward);
-        controller.Move(Time.deltaTime * movementSpeed * movement.x * Camera.main.transform.right);
+        controller.Move(Time.deltaTime * movementSpeed * movement.y * Vector3.Scale(Camera.main.transform.forward, new Vector3(1 , 0, 1)));
+        controller.Move(Time.deltaTime * movementSpeed * movement.x * Vector3.Scale(Camera.main.transform.right, new Vector3(1, 0, 1)));
         controller.enabled = false;
     }
 }
