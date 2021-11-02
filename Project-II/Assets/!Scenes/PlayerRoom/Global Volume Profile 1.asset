@@ -450,7 +450,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  m_SelectedCurve: 2
+  m_SelectedCurve: 7
 --- !u!114 &-5701911268115498988
 MonoBehaviour:
   m_ObjectHideFlags: 3
