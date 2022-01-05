@@ -66,12 +66,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.452
+    m_Value: 0.484
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.706
+    m_Value: 0.69
     min: 0.01
     max: 1
   roundness:
@@ -154,7 +154,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 4.5
+    m_Value: 3.4060528
   compensation:
     m_OverrideState: 1
     m_Value: -0.82
@@ -771,6 +771,7 @@ MonoBehaviour:
   - {fileID: -7153381631322936234}
   - {fileID: 5583223637370144365}
   - {fileID: 2968520110076910719}
+  - {fileID: 7414328969411640489}
 --- !u!114 &2968520110076910719
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -876,7 +877,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.444
     min: 0
     max: 1
   response:
@@ -887,3 +888,26 @@ MonoBehaviour:
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+--- !u!114 &7414328969411640489
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
+  m_Name: VisualEnvironment
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  skyType:
+    m_OverrideState: 1
+    m_Value: 1
+  skyAmbientMode:
+    m_OverrideState: 1
+    m_Value: 0
+  fogType:
+    m_OverrideState: 0
+    m_Value: 0
