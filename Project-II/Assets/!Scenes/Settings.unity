@@ -1796,7 +1796,7 @@ MonoBehaviour:
   controls: {fileID: -944628639613478452, guid: 2d654cfb4d413fe4996c3ff4f5c53397, type: 3}
   actionMapName: PlayerControls
   actionNameMoving: Char Move
-  actionNameReturn: 
+  actionNameBack: Return
 --- !u!1 &1036034968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: 
-  actionName: TempBack
+  actionName: Return
 --- !u!114 &1373972799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2379,7 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d757e3b448874788c0f01072f7f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  control: 
+  control: '-'
   actionName: Char Move
 --- !u!114 &1435750215
 MonoBehaviour:
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: 
-  actionName: TempBack
+  actionName: Return
 --- !u!114 &2058012017
 MonoBehaviour:
   m_ObjectHideFlags: 0

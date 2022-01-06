@@ -24,7 +24,7 @@ public class RebindButton : MonoBehaviour, IPointerClickHandler
     }
     public void OnGUI()
     {
-        textChild.text = alternateText.Equals("") ? returnKeyCode(manager.currentValueOfControl(control)) : alternateText;
+        textChild.text = alternateText.Equals("") ? returnKeyCode(manager.currentValueOfControl(control, actionName)) : alternateText;
         Event e = Event.current;
         if (e != null && e.type.Equals(EventType.KeyDown) && e.keyCode != KeyCode.None)
             keyPress = e.keyCode.ToString(); isKeyboard = true;

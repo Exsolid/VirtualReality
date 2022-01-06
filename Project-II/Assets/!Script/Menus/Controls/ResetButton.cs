@@ -15,7 +15,7 @@ public class ResetButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (control.Equals("")) manager.resetAllKeys();
+        if (control.Equals("-")) manager.resetAllKeys();
         else manager.resetKey(control, actionName);
     }
 }
