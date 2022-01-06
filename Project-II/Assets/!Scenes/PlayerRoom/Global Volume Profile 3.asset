@@ -451,7 +451,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.27
+    m_Value: 0.32
     min: -1
     max: 1
   xMultiplier:
@@ -491,7 +491,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.39
+    m_Value: 0.441
     min: 0
     max: 1
   response:
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 3.6089115
+    m_Value: 3.8487117
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -714,12 +714,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.443
+    m_Value: 0.448
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.269
+    m_Value: 0.312
     min: 0.01
     max: 1
   roundness:
