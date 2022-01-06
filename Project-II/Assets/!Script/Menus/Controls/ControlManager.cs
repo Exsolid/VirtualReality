@@ -8,6 +8,7 @@ public class ControlManager : MonoBehaviour
     [SerializeField] private InputActionAsset controls;
     [SerializeField] private string actionMapName; //Root object in controls
     [SerializeField] private string actionNameMoving; //Child object in controls
+    [SerializeField] private string actionNameBack; //Child object in controls
 
 
     private Dictionary<string, string> initConToKey;
@@ -22,6 +23,12 @@ public class ControlManager : MonoBehaviour
         currentConToKey = new Dictionary<string, string>();
 
         foreach (InputBinding bc in controls.FindActionMap(actionMapName).FindAction(actionNameMoving).bindings)
+        {
+            initConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
+            currentConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
+        }
+
+        foreach (InputBinding bc in controls.FindActionMap(actionMapName).FindAction(actionNameBack).bindings)
         {
             initConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
             currentConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
