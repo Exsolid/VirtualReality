@@ -741,7 +741,6 @@ GameObject:
   - component: {fileID: 1012428186}
   - component: {fileID: 1012428185}
   - component: {fileID: 1012428187}
-  - component: {fileID: 1012428184}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -749,21 +748,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1012428184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012428183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fa21c618b434e46b78ed9682cbeac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controls: {fileID: -944628639613478452, guid: 011e5abff021d9347881a506e8b073eb, type: 3}
-  actionMapName: PlayerControls
-  actionNameMoving: Char Move
 --- !u!114 &1012428185
 MonoBehaviour:
   m_ObjectHideFlags: 0
