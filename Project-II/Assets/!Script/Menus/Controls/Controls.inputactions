@@ -22,9 +22,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TempBack",
-                    "type": "Button",
-                    "id": "616713c0-8599-4e1e-bfd2-02e51041f283",
+                    "name": "Return",
+                    "type": "PassThrough",
+                    "id": "1ba7ba99-8b1c-4d5f-b1f9-6ca2982cfb9d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -45,7 +45,7 @@
                 {
                     "name": "2D Vector",
                     "id": "a6d4edbf-9c96-4608-98f4-46445cb6db16",
-                    "path": "2DVector",
+                    "path": "2dvector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -56,7 +56,7 @@
                 {
                     "name": "up",
                     "id": "d15583f8-eda1-401b-a52a-f3093ae5be33",
-                    "path": "<Keyboard>/w",
+                    "path": "<keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -67,7 +67,7 @@
                 {
                     "name": "down",
                     "id": "a85bd67a-d648-43ba-98d8-77ecc9dbcffa",
-                    "path": "<Keyboard>/s",
+                    "path": "<keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -78,7 +78,7 @@
                 {
                     "name": "left",
                     "id": "f43fb862-6431-4a5b-b06e-a4b93df1af8b",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/A",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -89,7 +89,7 @@
                 {
                     "name": "right",
                     "id": "19d21b95-585b-4925-80f8-13a7ec550c2a",
-                    "path": "<Keyboard>/d",
+                    "path": "<keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -99,12 +99,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ee38059d-b7ea-46ab-b940-7749c3cfefb9",
+                    "id": "1ca587ed-5af2-4560-b4fa-7fd34c75271c",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TempBack",
+                    "action": "Return",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
