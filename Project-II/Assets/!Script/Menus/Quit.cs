@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 
-public class Quit : MonoBehaviour
+public class Quit : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {

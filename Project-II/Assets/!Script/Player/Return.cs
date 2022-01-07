@@ -14,10 +14,9 @@ public class Return : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
         input.actions[returnActionName].performed +=
-                     context =>
-                     {
-                         if (sceneName.Equals("") || sceneName == null) Application.Quit();
-                         else SceneManager.LoadScene(sceneName);
-                     };
+                         context =>
+                         {
+                             SceneManager.LoadScene(sceneName);
+                         };
     }
 }
