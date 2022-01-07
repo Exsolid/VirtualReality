@@ -1718,6 +1718,8 @@ GameObject:
   - component: {fileID: 1012428185}
   - component: {fileID: 1012428187}
   - component: {fileID: 1012428188}
+  - component: {fileID: 1012428184}
+  - component: {fileID: 1012428189}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1725,6 +1727,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1012428184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012428183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2775335abcee7b4db5a2cc52f0f423b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: MainMenu
+  returnActionName: Return
+  input: {fileID: 1012428189}
 --- !u!114 &1012428185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1797,6 +1814,36 @@ MonoBehaviour:
   actionMapName: PlayerControls
   actionNameMoving: Char Move
   actionNameBack: Return
+--- !u!114 &1012428189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012428183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2d654cfb4d413fe4996c3ff4f5c53397, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1036034968
 GameObject:
   m_ObjectHideFlags: 0
