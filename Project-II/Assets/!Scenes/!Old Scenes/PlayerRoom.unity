@@ -2278,9 +2278,9 @@ GameObject:
   - component: {fileID: 722729665}
   - component: {fileID: 722729664}
   - component: {fileID: 722729662}
+  - component: {fileID: 722729667}
   - component: {fileID: 722729666}
   - component: {fileID: 722729663}
-  - component: {fileID: 722729667}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2389,6 +2389,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toVRTag: toVR
   vrSceneName: FinalVRHouse
+  interactActionName: Interact
+  input: {fileID: 722729663}
 --- !u!1 &736145367
 GameObject:
   m_ObjectHideFlags: 3

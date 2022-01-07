@@ -13,10 +13,10 @@ public class Return : MonoBehaviour
     void Start()
     {
         input = GetComponent<PlayerInput>();
-        input.actions[returnActionName].performed +=
-                         context =>
-                         {
-                             SceneManager.LoadScene(sceneName);
-                         };
+    }
+
+    void Update()
+    {
+        if (input.actions[returnActionName].triggered) SceneManager.LoadScene(sceneName);
     }
 }
