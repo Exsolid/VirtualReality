@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         turnView();
         if(!lockPosition) move();
@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
     private void turnView()
     {
         Vector2 mouse = input.actions[viewActionName].ReadValue<Vector2>();
-        Quaternion rotation = Quaternion.RotateTowards(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1, Camera.main.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
+        Quaternion rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1, Camera.main.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
         Camera.main.transform.rotation = Quaternion.Euler((Mathf.Abs(rotation.eulerAngles.x - 180) < 115) ? Camera.main.transform.rotation.eulerAngles.x : rotation.eulerAngles.x,  rotation.eulerAngles.y, 0);
     }
 
