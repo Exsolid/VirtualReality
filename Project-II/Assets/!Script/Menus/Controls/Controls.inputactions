@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Return",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "1ba7ba99-8b1c-4d5f-b1f9-6ca2982cfb9d",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "Interact",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "e39113a5-0049-44eb-8a0b-84c316966a48",
                     "expectedControlType": "Button",
                     "processors": "",

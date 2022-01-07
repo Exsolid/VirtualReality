@@ -19,7 +19,7 @@ public class ControlManager : MonoBehaviour
     void Start()
     {
         //if (PlayerPrefs.HasKey(PlayerPrefKeys.JSON_CONTROLS)) controls.LoadFromJson(PlayerPrefs.GetString(PlayerPrefKeys.JSON_CONTROLS));
-
+        //PlayerPrefs.DeleteAll();
         initConToKey = new Dictionary<string, string>();
         currentConToKey = new Dictionary<string, string>();
 
