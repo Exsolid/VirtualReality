@@ -8,6 +8,8 @@ public class ControlManager : MonoBehaviour
     [SerializeField] private InputActionAsset controls;
     [SerializeField] private string actionMapName; //Root object in controls
     [SerializeField] private string actionNameMoving; //Child object in controls
+    [SerializeField] private string actionNameReturn; //Child object in controls
+    [SerializeField] private string actionNameInteract; //Child object in controls
 
 
     private Dictionary<string, string> initConToKey;
@@ -16,8 +18,8 @@ public class ControlManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey(PlayerPrefKeys.JSON_CONTROLS)) controls.LoadFromJson(PlayerPrefs.GetString(PlayerPrefKeys.JSON_CONTROLS));
-
+        //if (PlayerPrefs.HasKey(PlayerPrefKeys.JSON_CONTROLS)) controls.LoadFromJson(PlayerPrefs.GetString(PlayerPrefKeys.JSON_CONTROLS));
+        //PlayerPrefs.DeleteAll();
         initConToKey = new Dictionary<string, string>();
         currentConToKey = new Dictionary<string, string>();
 
@@ -25,6 +27,16 @@ public class ControlManager : MonoBehaviour
         {
             initConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
             currentConToKey.Add(bc.name.ToLower(), bc.path.ToLower());
+        }
+        foreach (InputBinding bc in controls.FindActionMap(actionMapName).FindAction(actionNameReturn).bindings)
+        {
+            initConToKey.Add(actionNameReturn.ToLower(), bc.path.ToLower());
+            currentConToKey.Add(actionNameReturn.ToLower(), bc.path.ToLower());
+        }
+        foreach (InputBinding bc in controls.FindActionMap(actionMapName).FindAction(actionNameInteract).bindings)
+        {
+            initConToKey.Add(actionNameInteract.ToLower(), bc.path.ToLower());
+            currentConToKey.Add(actionNameInteract.ToLower(), bc.path.ToLower());
         }
     }
 
@@ -36,6 +48,7 @@ public class ControlManager : MonoBehaviour
     public bool setKey(string control, string path, string actionName)
     {
         control = stripToEmpty(control);
+        if (control == "") control = actionName;
         if (currentConToKey.ContainsValue(path.ToLower())) return false;
 
         InputAction ac = controls.FindAction(actionName);
@@ -47,6 +60,7 @@ public class ControlManager : MonoBehaviour
     public void resetKey(string control, string actionName)
     {
         control = stripToEmpty(control);
+        if (control == "") control = actionName;
         InputAction ac = controls.FindAction(actionName);
         ac.ChangeBindingWithPath(currentConToKey[control.ToLower()]).WithPath(initConToKey[control.ToLower()]);
         currentConToKey[control.ToLower()] = initConToKey[control.ToLower()];
@@ -65,9 +79,10 @@ public class ControlManager : MonoBehaviour
         }
     }
 
-    public string currentValueOfControl(string control)
+    public string currentValueOfControl(string control, string actionName)
     {
         control = stripToEmpty(control);
+        if (control == "") control = actionName;
         return currentConToKey[control.ToLower()];
     }
 
