@@ -98,8 +98,7 @@ Shader "Hidden/Shader/Glitch"
         input.uv -= saturate(cos(input.pos.y*_IndentionAmount)*0.1*-_IndentionIntensityLeft);
 
         //Repeating Screen Values
-        input.uv.y = (_ScreenDivisions == 0) * input.uv.y + (_ScreenDivisions != 0) * (input.uv.y+_Time*5+_ScreenDivisions*2)*(_ScreenDivisions)%1;
-
+        input.uv.y = (_ScreenDivisions == 0) * input.uv.y + (_ScreenDivisions != 0) * (input.uv.y+_Time.x*5+_ScreenDivisions*2)*(_ScreenDivisions)%1;
         //Displacement
         float4 colDisp = tex2D(_DisplacementTex, input.uv);
         float2 uvCopy = input.uv + colDisp.xy * _DisplacementIntensity *0.1;
@@ -107,8 +106,8 @@ Shader "Hidden/Shader/Glitch"
         float4 col = LOAD_TEXTURE2D_X(_RenderTex, positionSS);
 
         //Noise Values
-        col -=  rand(col)*0.3*_NoiseIntensity;
-        col +=  rand(col)*0.1*_NoiseIntensity;
+        col -=  rand(col.x)*0.3*_NoiseIntensity;
+        col +=  rand(col.x)*0.1*_NoiseIntensity;
 
         //Static Values
         float timedValue =  (cos(_Time.y * 0.01)*10000) * _StaticTimed;
@@ -119,7 +118,7 @@ Shader "Hidden/Shader/Glitch"
         col += timed;
         
         //Black and White Values
-        col = (_BlackWhite != 1) * col + (_BlackWhite == 1) * blackWhite(col);
+        col = (_BlackWhite != 1) * col + (_BlackWhite == 1) * blackWhite(col.z);
 
         return col;
     }
