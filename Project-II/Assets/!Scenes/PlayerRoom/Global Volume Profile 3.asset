@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   quality:
     m_OverrideState: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bff652df78c97c4f963064ad1f34619, type: 3}
   m_Name: ColorCurves
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   master:
     m_OverrideState: 1
@@ -340,6 +340,88 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   m_SelectedCurve: 7
+--- !u!114 &-6745190535545094085
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1a15665435170448512241007e0b68, type: 3}
+  m_Name: Glitch
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  _NoiseIntensity:
+    m_OverrideState: 1
+    m_Value: 0.13
+    min: 0
+    max: 4
+  _ScreenDivisions:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 5
+  _IndentionAmount:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _IndentionIntensityLeft:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _IndentionIntensityRight:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _StaticOpacity:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _StaticDivisionsY:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _StaticDivisionsY2:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _StaticDivisionsY3:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _StaticTimed:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _BlackWhite:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _BlackWhiteContrast:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _DisplacementIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  _DisplacementTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: ca6eed42d56e10e4c8d52103818811fd, type: 3}
 --- !u!114 &-5845218982374681902
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -408,7 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b24b200358312b4fa1004e2431c2f1f, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
@@ -447,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1bfcd0f0fa7b8468f281d6bbbaf320, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
@@ -484,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b00fcf518bb94a90b408492e07b44, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -514,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d08ce26990eb1a4a9177b860541e702, type: 3}
   m_Name: Exposure
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -686,6 +768,7 @@ MonoBehaviour:
   - {fileID: 610311506876731987}
   - {fileID: -2026160685665741466}
   - {fileID: -989648229131297640}
+  - {fileID: -6745190535545094085}
 --- !u!114 &610311506876731987
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -698,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -750,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034cba68ab55e046ae1445a42f18c0e, type: 3}
   m_Name: IndirectLightingController
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   indirectDiffuseLightingMultiplier:
     m_OverrideState: 1
@@ -782,7 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
   m_Name: VisualEnvironment
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   skyType:
     m_OverrideState: 1
@@ -805,7 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8bcdf71d7fafa419fca1ed162f5fc9, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
@@ -843,7 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
   m_Name: HDShadowSettings
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   maxShadowDistance:
     m_OverrideState: 1
@@ -892,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
   m_Name: HDRISky
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   rotation:
     m_OverrideState: 1
@@ -1014,7 +1097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51a78e223a2e504bb88a059b55229ea, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
