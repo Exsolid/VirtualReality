@@ -340,6 +340,30 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   m_SelectedCurve: 7
+--- !u!114 &-6957387888268253156
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ebd604ea08b9040a79a81a07b99f82, type: 3}
+  m_Name: Blur
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  _Quality:
+    m_OverrideState: 1
+    m_Value: 16
+    min: 0
+    max: 64
+  _Amount:
+    m_OverrideState: 1
+    m_Value: 16
+    min: 0
+    max: 64
 --- !u!114 &-6745190535545094085
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -769,6 +793,7 @@ MonoBehaviour:
   - {fileID: -2026160685665741466}
   - {fileID: -989648229131297640}
   - {fileID: -6745190535545094085}
+  - {fileID: -6957387888268253156}
 --- !u!114 &610311506876731987
 MonoBehaviour:
   m_ObjectHideFlags: 3

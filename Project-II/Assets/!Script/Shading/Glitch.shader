@@ -60,7 +60,6 @@ Shader "Hidden/Shader/Glitch"
     struct FragInput {
         float4 pos : SV_POSITION;
         float2 uv : TEXCOORD0;
-        float2 uv2 : TEXCOORD1;
     };
 
     struct MeshData {
@@ -88,7 +87,6 @@ Shader "Hidden/Shader/Glitch"
         FragInput o;
         o.pos = GetFullScreenTriangleVertexPosition(data.vertexID);
         o.uv =  GetFullScreenTriangleTexCoord(data.vertexID);
-        o.uv2 = data.uv;
         return o;
     }
 
