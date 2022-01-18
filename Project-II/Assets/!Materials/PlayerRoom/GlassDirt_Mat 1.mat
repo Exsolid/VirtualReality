@@ -26,9 +26,9 @@ Material:
     _DOUBLESIDED_ON _ENABLE_FOG_ON_TRANSPARENT _ENABLE_GEOMETRIC_SPECULAR_AA _NORMALMAP_TANGENT_SPACE
     _REFRACTION_THIN _SPECULAR_OCCLUSION_NONE _SURFACE_TYPE_TRANSPARENT _TRANSPARENT_WRITES_MOTION_VEC
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3002
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
     RenderType: Transparent
@@ -272,9 +272,9 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 1
     - _TransparentDepthPrepassEnable: 1
-    - _TransparentSortPriority: 2
+    - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 1
-    - _TransparentZWrite: 1
+    - _TransparentZWrite: 0
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
@@ -284,7 +284,7 @@ Material:
     - _ZTestGBuffer: 3
     - _ZTestModeDistortion: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
     - Color_DCF1FFF3: {r: 0, g: 0, b: 0, a: 0.2}
     - Vector2_5A851886: {r: 0, g: 0, b: 0, a: 0}
