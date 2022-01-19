@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private Camera secondCam;
 
+    public bool LockRotation { get { return lockRotation; } set { lockRotation = value; } }
+    [SerializeField] private bool lockRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +29,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        turnView();
+        if(!lockRotation) turnView();
         if(!lockPosition) move();
     }
 
