@@ -306,8 +306,8 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.51796407
-          value: 0.48407644
+          time: 0.46819338
+          value: 0.49462366
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -328,8 +328,8 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.24783862
-          value: 0.33128834
+          time: 0.2519084
+          value: 0.39784944
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  m_SelectedCurve: 7
+  m_SelectedCurve: 6
 --- !u!114 &-6957387888268253156
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -469,7 +469,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.324
+    m_Value: 0.008
     min: 0
     max: 1
   scatter:
@@ -524,7 +524,7 @@ MonoBehaviour:
     m_Value: {x: 0.90258247, y: 0.95492953, z: 1, w: 0.021186449}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.9768657, y: 1, z: 0.99563926, w: 0}
+    m_Value: {x: 0.99281967, y: 0.976785, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1bfcd0f0fa7b8468f281d6bbbaf320, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b00fcf518bb94a90b408492e07b44, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -633,7 +633,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 3.8487117
+    m_Value: 4.563352
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034cba68ab55e046ae1445a42f18c0e, type: 3}
   m_Name: IndirectLightingController
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   indirectDiffuseLightingMultiplier:
     m_OverrideState: 1
@@ -920,7 +920,7 @@ MonoBehaviour:
     m_Value: -0.05
   contrast:
     m_OverrideState: 1
-    m_Value: -2
+    m_Value: 2
     min: -100
     max: 100
   colorFilter:
@@ -1126,11 +1126,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 66
     min: -100
     max: 100
   tint:
     m_OverrideState: 1
-    m_Value: 37
+    m_Value: 28
     min: -100
     max: 100

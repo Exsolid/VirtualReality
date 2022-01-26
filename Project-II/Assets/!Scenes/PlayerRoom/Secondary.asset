@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Value: -0.05
   contrast:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -3
     min: -100
     max: 100
   colorFilter:
@@ -91,7 +91,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: -6
+    m_Value: 0
     min: -100
     max: 100
 --- !u!114 &-7006931733853028312
@@ -110,12 +110,12 @@ MonoBehaviour:
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: -9
     min: -100
     max: 100
   tint:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 5
     min: -100
     max: 100
 --- !u!114 &-6627457141639973343
@@ -356,8 +356,8 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.24783862
-          value: 0.33128834
+          time: 0.91857505
+          value: 0.52150536
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -512,7 +512,7 @@ MonoBehaviour:
     m_Value: {x: 0.90258247, y: 0.95492953, z: 1, w: 0.021186449}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.9768657, y: 1, z: 0.99563926, w: 0}
+    m_Value: {x: 0.9189811, y: 0.9137102, z: 1, w: -0.098654695}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.32
+    m_Value: 0.29
     min: -1
     max: 1
   xMultiplier:
@@ -709,7 +709,7 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.441
+    m_Value: 0.915
     min: 0
     max: 1
   response:
@@ -798,7 +798,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 9.284241
+    m_Value: 9.449131
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -1031,7 +1031,7 @@ MonoBehaviour:
     m_Value: 1
   enabled:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   colorMode:
     m_OverrideState: 1
     m_Value: 1
@@ -1049,7 +1049,7 @@ MonoBehaviour:
     showEyeDropper: 1
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 0
     min: 0
   mipFogMaxMip:
     m_OverrideState: 0
@@ -1069,10 +1069,10 @@ MonoBehaviour:
     m_Value: 5
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 5
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 120
+    m_Value: 111
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1

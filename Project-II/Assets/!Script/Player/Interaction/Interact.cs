@@ -10,17 +10,16 @@ public class Interact : MonoBehaviour
     [SerializeField] private string interactActionName;
     [SerializeField] private string returnActionName;
     [SerializeField] private PlayerInput input;
-
-    //[SerializeField] private Camera focusCamera;
     [SerializeField] private VolumeProfile volumeProfile;
 
     [SerializeField] private Text textBox;
-
+    [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
 
-    private GameObject objectInUse;
+    [SerializeField] private string interactingLayerName;
+    [SerializeField] private string interactableLayerName;
 
-    // Update is called once per frame
+    private GameObject objectInUse;
     void Update()
     {
         if(objectInUse != null)
@@ -48,9 +47,13 @@ public class Interact : MonoBehaviour
     private void interact()
     {
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-        //focusCamera.enabled = true;
-        //focusCamera.transform.LookAt(objectInUse.transform);
-        if (infos.UseBlur) volumeProfile.components.Find(component => component.name.Equals("Blur")).active = true;
+        if (infos.UseBlur)
+        {
+            volumeProfile.components.Find(component => component.name.Equals("Blur")).active = true;
+            objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
+            objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
+        }
         if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = true;
         if (infos.ShownText.Length > 0)
         {
@@ -65,10 +68,20 @@ public class Interact : MonoBehaviour
 
     private void resetInteraction()
     {
-        //focusCamera.enabled = false;
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-        if (infos.UseBlur) volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
+        if (infos.UseBlur)
+        {
+            volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
+            objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
+            Camera.main.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
+            objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
+        }
         if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
         if (infos.ShownText.Length > 0) textBox.text = "";
+    }
+
+    private void OnDestroy()
+    {
+        volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
     }
 }
