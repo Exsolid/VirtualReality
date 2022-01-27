@@ -10,4 +10,6 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private bool focusOnObject;
     public string[] ShownText { get { return shownText; } set { shownText = value; } }
     [SerializeField] private string[] shownText;
+    public bool Moveable { get { return moveable; } set { moveable = value; } }
+    [SerializeField] private bool moveable;
 }

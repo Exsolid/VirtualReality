@@ -64,6 +64,11 @@ public class Interact : MonoBehaviour
             }
             textBox.text = builder;
         }
+        if(infos.Moveable)
+        {
+            Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
+            rb.AddTorque(Vector3.one*20*Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
+        }
     }
 
     private void resetInteraction()
