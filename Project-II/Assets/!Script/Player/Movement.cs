@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour
         Vector2 mouse = input.actions[viewActionName].ReadValue<Vector2>();
         Quaternion rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1, Camera.main.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
         Camera.main.transform.rotation = Quaternion.Euler((Mathf.Abs(rotation.eulerAngles.x - 180) < 115) ? Camera.main.transform.rotation.eulerAngles.x : rotation.eulerAngles.x,  rotation.eulerAngles.y, 0);
-        secondCam.transform.rotation = Camera.main.transform.rotation;
+        if(secondCam != null) secondCam.transform.rotation = Camera.main.transform.rotation;
     }
 
     private void move()

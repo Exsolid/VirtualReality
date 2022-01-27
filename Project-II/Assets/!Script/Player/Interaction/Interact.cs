@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Interact : MonoBehaviour
 {
@@ -71,6 +72,10 @@ public class Interact : MonoBehaviour
         {
             Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
             rb.AddTorque(Vector3.one*20*Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
+        }
+        if(infos.GotoScene != "")
+        {
+            SceneManager.LoadScene(infos.GotoScene);
         }
     }
 

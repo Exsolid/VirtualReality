@@ -12,4 +12,6 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private string[] shownText;
     public bool Moveable { get { return moveable; } set { moveable = value; } }
     [SerializeField] private bool moveable;
+    public string GotoScene { get { return gotoScene; } set { gotoScene = value; } }
+    [SerializeField] private string gotoScene;
 }
