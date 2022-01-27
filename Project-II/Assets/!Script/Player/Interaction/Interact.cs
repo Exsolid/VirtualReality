@@ -12,7 +12,7 @@ public class Interact : MonoBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private VolumeProfile volumeProfile;
 
-    [SerializeField] private Text textBox;
+    [SerializeField] private Canvas canvasForDialog;
     [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
 
@@ -58,11 +58,14 @@ public class Interact : MonoBehaviour
         if (infos.ShownText.Length > 0)
         {
             string builder = "";
-            foreach(string st in infos.ShownText)
+            for(int i = 0; i < infos.ShownText.Length; i++)
             {
-                builder += st + "\n";
+                builder += infos.ShownText[i];
+                if (i != infos.ShownText.Length - 1) builder += "\n";
             }
-            textBox.text = builder;
+            builder.Remove(builder.Length-3, 2);
+            canvasForDialog.GetComponentInChildren<Text>().text = builder;
+            canvasForDialog.GetComponentInChildren<Image>().enabled = true;
         }
         if(infos.Moveable)
         {
@@ -82,7 +85,11 @@ public class Interact : MonoBehaviour
             objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
         }
         if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
-        if (infos.ShownText.Length > 0) textBox.text = "";
+        if (infos.ShownText.Length > 0)
+        {
+            canvasForDialog.GetComponentInChildren<Text>().text = "";
+            canvasForDialog.GetComponentInChildren<Image>().enabled = false;
+        }
     }
 
     private void OnDestroy()
