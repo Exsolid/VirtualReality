@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     private PlayerInput input;
     private CharacterController controller;
-    [SerializeField] private int mouseSensitivity;
+    [SerializeField] private float mouseSensitivity;
     [SerializeField] private float movementSpeed;
     [SerializeField] private string movementActionName;
     [SerializeField] private string viewActionName;
@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
+        if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivity *= PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class Movement : MonoBehaviour
     private void turnView()
     {
         Vector2 mouse = input.actions[viewActionName].ReadValue<Vector2>();
-        Quaternion rotation = Quaternion.Slerp(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1, Camera.main.transform.rotation.eulerAngles.y + mouse.x , 0), mouseSensitivity * Time.deltaTime * 10);
+        Quaternion rotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x+ mouse.y *-1/2, Camera.main.transform.rotation.eulerAngles.y + mouse.x/2 , 0), mouseSensitivity * Time.deltaTime * 10);
         Camera.main.transform.rotation = Quaternion.Euler((Mathf.Abs(rotation.eulerAngles.x - 180) < 115) ? Camera.main.transform.rotation.eulerAngles.x : rotation.eulerAngles.x,  rotation.eulerAngles.y, 0);
         if(secondCam != null) secondCam.transform.rotation = Camera.main.transform.rotation;
     }
