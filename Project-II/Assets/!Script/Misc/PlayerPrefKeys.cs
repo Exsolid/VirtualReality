@@ -9,4 +9,6 @@ public static class PlayerPrefKeys
     public static readonly string MOUSE_SENSITIVITY = keyword + "Mouse_Sensitivity";
     public static readonly string SOUND_VOLUME = keyword + "Sound_Volume";
     public static readonly string MUSIC_VOLUME = keyword + "Music_Volume";
+
+    public static readonly string PREV_SCENE = keyword + "Previous_Scene";
 }

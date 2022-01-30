@@ -79,21 +79,24 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void resetInteraction()
+    public void resetInteraction()
     {
-        InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-        if (infos.UseBlur)
+        if(objectInUse != null)
         {
-            volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
-            objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
-            Camera.main.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
-            objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
-        }
-        if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
-        if (infos.ShownText.Length > 0)
-        {
-            canvasForDialog.GetComponentInChildren<Text>().text = "";
-            canvasForDialog.GetComponentInChildren<Image>().enabled = false;
+            InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
+            if (infos.UseBlur)
+            {
+                volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
+                objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
+                Camera.main.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
+                objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
+            }
+            if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
+            if (infos.ShownText.Length > 0)
+            {
+                canvasForDialog.GetComponentInChildren<Text>().text = "";
+                canvasForDialog.GetComponentInChildren<Image>().enabled = false;
+            }
         }
     }
 
