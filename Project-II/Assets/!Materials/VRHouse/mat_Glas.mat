@@ -162,9 +162,9 @@ Material:
     - _AlbedoAffectEmissive: 0
     - _AlphaCutoff: 0
     - _AlphaCutoffEnable: 1
-    - _AlphaCutoffPostpass: 0.5
-    - _AlphaCutoffPrepass: 0.5
-    - _AlphaCutoffShadow: 0.2
+    - _AlphaCutoffPostpass: 0.48
+    - _AlphaCutoffPrepass: 0.753
+    - _AlphaCutoffShadow: 0.357
     - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
