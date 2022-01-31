@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterController>();
         if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivityUpdated = mouseSensitivity * PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
+        else mouseSensitivityUpdated = mouseSensitivity;
     }
 
     // Update is called once per frame
@@ -56,5 +57,6 @@ public class Movement : MonoBehaviour
     public void updateMouseSense()
     {
         if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivityUpdated = mouseSensitivity * PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
+        else mouseSensitivityUpdated = mouseSensitivity;
     }
 }
