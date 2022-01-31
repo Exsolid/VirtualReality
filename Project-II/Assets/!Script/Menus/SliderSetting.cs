@@ -13,6 +13,7 @@ public class SliderSetting : MonoBehaviour
     private float timer;
 
     private string pref;
+    private Movement playerMovementToUpdate;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +29,12 @@ public class SliderSetting : MonoBehaviour
                 pref = PlayerPrefKeys.SOUND_VOLUME;
                 break;
         }
+        playerMovementToUpdate = FindObjectsOfType(typeof(Movement))[0] as Movement;
         slider = gameObject.GetComponent<Slider>();
         if (PlayerPrefs.HasKey(pref)) slider.value = PlayerPrefs.GetFloat(pref) * slider.maxValue;
         slider.onValueChanged.AddListener(delegate
         {
-            timer = 1.5f;
+            timer = 0.5f;
         });
     }
 
@@ -43,6 +45,7 @@ public class SliderSetting : MonoBehaviour
         if (timer < 0 && timer != -10)
         {
             PlayerPrefs.SetFloat(pref, slider.value / slider.maxValue);
+            if (playerMovementToUpdate != null) playerMovementToUpdate.updateMouseSense();
             timer = -10;
         }
     }
