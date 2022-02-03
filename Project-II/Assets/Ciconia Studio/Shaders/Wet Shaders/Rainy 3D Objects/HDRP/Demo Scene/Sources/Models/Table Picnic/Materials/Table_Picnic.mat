@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Table_Picnic
+  m_Shader: {fileID: 4800000, guid: ff77403c7d0418247ba1ca8dd5ac4b1b, type: 3}
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _BLENDINGMODEDROPS_ADDITIVE _DETAILWAVE_ON
+    _ENABLEDROPSIDE_ON _ENABLERANDOMMASK_ON _ENABLETRAILOFDROP_ON _MAINWAVE_ON _RAINDROPSONLY_ON
+    _REFLECTED_RAINDROPS _USEAOFROMMAINPROPERTIES_ON _USEEMISSIONFROMMAINPROPERTIES_ON
+    _USEMAINNORMALMAPASNORMALDIRECTION_ON
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - TransparentBackface
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 74628682a23b3884488091ab815fcc3a, type: 3}
+        m_Scale: {x: 50, y: 50}
+        m_Offset: {x: 0, y: 0}
+    - _Cubemap:
+        m_Texture: {fileID: 8900000, guid: a38fe65b39f8f984a9707ab648ef37e7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 2800000, guid: 74628682a23b3884488091ab815fcc3a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GradientTexRain1:
+        m_Texture: {fileID: 2800000, guid: 69822616873d83c4c95347dc085c81e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMapMAHS:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TransparentMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AddPrecomputedVelocity: 1
+    - _AlphaCutoff: 0.5
+    - _AlphaCutoffEnable: 0
+    - _AlphaDstBlend: 0
+    - _AlphaSrcBlend: 1
+    - _Amount: 8
+    - _AoIntensity: 0
+    - _BlendMainNormal: 0
+    - _BlendMode: 0
+    - _BlendingModeDrops: 0
+    - _BlurReflection: 0
+    - _Brightness: 1
+    - _BumpScale: 0.02
+    - _ContrastDetailMap: 0
+    - _ContrastTransparentMap1: 0
+    - _CullMode: 2
+    - _CullModeForward: 2
+    - _DetailBrightness: 1
+    - _DetailSaturation: 0
+    - _DetailWave: 1
+    - _DotFalloff: 1
+    - _DoubleSidedEnable: 0
+    - _DoubleSidedNormalMode: 2
+    - _DripLineContrast: 1.75
+    - _DripLineSpeed: 0.05
+    - _DropSideIntensity: 0.7
+    - _DropTopIntensity: 1
+    - _DstBlend: 0
+    - _EmissionIntensity: 1
+    - _EnableDropSide: 1
+    - _EnableFogOnTransparent: 1
+    - _EnableProjectionGrid: 0
+    - _EnableRandomMask: 1
+    - _EnableTrailOfDrop: 1
+    - _Glossiness: 0.462
+    - _Glossiness2: 0.5
+    - _GrowMask: 1
+    - _Intensity: 1
+    - _IntensityDripLine: 2
+    - _IntensityMask: 1
+    - _InvertABaseColor: 0
+    - _InvertMask: 0
+    - _InvertTransparent1: 0
+    - _MainWave: 1
+    - _Metallic: 0
+    - _Metallic2: 0
+    - _Noisescale: 2
+    - _NormalDots: 0.3
+    - _NormalDrop: 0.5
+    - _NormalWaveIntensity1: 0.5
+    - _NormalWaveIntensity2: 0.3
+    - _OpacityGrabPass: 0.5
+    - _Parallax: 0
+    - _RainDropsOnly: 1
+    - _RandomMax: 4.26
+    - _RandomPosition: 1
+    - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
+    - _Reflected: 1
+    - _ReflectionIntensity: 3
+    - _Refraction: 1.1
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
+    - _RotationAngle1: 0
+    - _RotationAngle2: 90
+    - _Saturation: 0
+    - _Size: 0.4
+    - _SmoothnessDrop: 1
+    - _SourceMask: 0
+    - _SplashSpeed: 0.1
+    - _SpreadDetailMap: 0.5
+    - _SpreadTransparentMap1: 0.5
+    - _SrcBlend: 1
+    - _StencilRef: 0
+    - _StencilRefDepth: 8
+    - _StencilRefDistortionVec: 4
+    - _StencilRefGBuffer: 10
+    - _StencilRefMV: 40
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 14
+    - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
+    - _SurfaceType: 0
+    - _Tiling: 514.1
+    - _TilingHorizontal: 17
+    - _TilingVertical: 2.12
+    - _TilingWave1: 1
+    - _TilingWave2: 1
+    - _TrailDropContrast: 10
+    - _TrailDropSize: 3
+    - _TrailDropSpeed: 0.5
+    - _TrailDropTiling: 500
+    - _TranslationSpeed1: 1
+    - _TranslationSpeed2: 1
+    - _TransparentBackfaceEnable: 0
+    - _TransparentCullMode: 2
+    - _TransparentSortPriority: 0
+    - _TransparentZWrite: 1
+    - _UseAoFromMainProperties: 1
+    - _UseBaseColorAlpha: 0
+    - _UseBaseColorAlphaMaskSide: 0
+    - _UseBaseColorAlphaMaskSide1: 0
+    - _UseBaseColorAlphaMaskTop: 0
+    - _UseEmissionFromMainProperties: 1
+    - _UseMainBaseColorMap: 1
+    - _UseMainNormalMapasNormalDirection: 1
+    - _UseShadowThreshold: 0
+    - _VisualizeMask: 0
+    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 4
+    - _ZTestTransparent: 4
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0}
+    - _ColorCubemap: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorCubemap1: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailColor: {r: 0, g: 0, b: 0, a: 0}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GlobalXYTilingXYZWOffsetXY: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
