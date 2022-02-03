@@ -10,6 +10,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] private Canvas pauseMenu;
     [SerializeField] RectTransform mainPause;
     private bool isPaused;
+    public bool IsPaused { get { return isPaused; } }
 
     private bool mayUnlockRotation;
 
@@ -28,23 +29,24 @@ public class PauseGame : MonoBehaviour
 
     public void togglePause()
     {
-        isPaused = !isPaused;
-        pauseMenu.enabled = isPaused;
-        if (isPaused)
+        if (!GetComponent<Interact>().isInteracting())
         {
-            mayUnlockRotation = GetComponent<Movement>().LockRotation;
-            GetComponent<Movement>().LockRotation = true;
-            GetComponent<Interact>().resetInteraction();
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-        }
-        else
-        {
-            mainPause.SetAsLastSibling();
-            GetComponent<Movement>().LockRotation = mayUnlockRotation;
-            GetComponent<Interact>().resetInteraction();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            isPaused = !isPaused;
+            pauseMenu.enabled = isPaused;
+            if (isPaused)
+            {
+                mayUnlockRotation = GetComponent<Movement>().LockRotation;
+                GetComponent<Movement>().LockRotation = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+            }
+            else
+            {
+                mainPause.SetAsLastSibling();
+                GetComponent<Movement>().LockRotation = mayUnlockRotation;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 }

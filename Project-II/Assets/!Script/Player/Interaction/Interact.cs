@@ -21,19 +21,20 @@ public class Interact : MonoBehaviour
     [SerializeField] private string interactableLayerName;
 
     private GameObject objectInUse;
+
+    private int textCounter;
     void Update()
     {
-        if(objectInUse != null)
+        if(objectInUse != null && !GetComponent<PauseGame>().IsPaused)
         {
             if (input.actions[returnActionName].triggered || input.actions[interactActionName].triggered)
             {
                 resetInteraction();
-                objectInUse = null;
             }
             return;
         }
 
-        if (input.actions[interactActionName].triggered)
+        if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused)
         {
             Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
 
@@ -58,14 +59,8 @@ public class Interact : MonoBehaviour
         if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = true;
         if (infos.ShownText.Length > 0)
         {
-            string builder = "";
-            for(int i = 0; i < infos.ShownText.Length; i++)
-            {
-                builder += infos.ShownText[i];
-                if (i != infos.ShownText.Length - 1) builder += "\n";
-            }
-            builder.Remove(builder.Length-3, 2);
-            canvasForDialog.GetComponentInChildren<Text>().text = builder;
+            textCounter = 0;
+            canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
             canvasForDialog.GetComponentInChildren<Image>().enabled = true;
         }
         if(infos.Moveable)
@@ -84,6 +79,12 @@ public class Interact : MonoBehaviour
         if(objectInUse != null)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
+            if (infos.ShownText.Length-1 != textCounter)
+            {
+                textCounter++;
+                canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
+                return;
+            }
             if (infos.UseBlur)
             {
                 volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
@@ -92,16 +93,22 @@ public class Interact : MonoBehaviour
                 objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             }
             if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
-            if (infos.ShownText.Length > 0)
+            if (infos.ShownText.Length-1 == textCounter)
             {
                 canvasForDialog.GetComponentInChildren<Text>().text = "";
                 canvasForDialog.GetComponentInChildren<Image>().enabled = false;
             }
+            objectInUse = null;
         }
     }
 
     private void OnDestroy()
     {
         volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
+    }
+
+    public bool isInteracting()
+    {
+        return objectInUse != null;
     }
 }
