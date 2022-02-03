@@ -57,7 +57,13 @@ public class Interact : MonoBehaviour
             objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
         }
         if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = true;
-        if (infos.ShownText.Length > 0)
+        if (!infos.StoryObject.Equals(StoryObjects.None))
+        {
+            infos.ShownText.Clear();
+            infos.ShownText.AddRange(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).ShownText);
+            GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
+        }
+        if (infos.ShownText.Count > 0)
         {
             textCounter = 0;
             canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
@@ -79,7 +85,7 @@ public class Interact : MonoBehaviour
         if(objectInUse != null)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-            if (infos.ShownText.Length-1 != textCounter)
+            if (infos.ShownText.Count - 1 != textCounter)
             {
                 textCounter++;
                 canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
@@ -93,7 +99,7 @@ public class Interact : MonoBehaviour
                 objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             }
             if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
-            if (infos.ShownText.Length-1 == textCounter)
+            if (infos.ShownText.Count - 1 == textCounter)
             {
                 canvasForDialog.GetComponentInChildren<Text>().text = "";
                 canvasForDialog.GetComponentInChildren<Image>().enabled = false;
@@ -110,5 +116,10 @@ public class Interact : MonoBehaviour
     public bool isInteracting()
     {
         return objectInUse != null;
+    }
+
+    public void switchObject(GameObject gameObject)
+    {
+        objectInUse = gameObject;
     }
 }

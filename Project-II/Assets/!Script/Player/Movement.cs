@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool lockPosition;
 
     [SerializeField] private Camera secondCam;
+    private Vector3 rotateToPosition;
 
     public bool LockRotation { get { return lockRotation; } set { lockRotation = value; } }
     [SerializeField] private bool lockRotation;
@@ -33,6 +34,13 @@ public class Movement : MonoBehaviour
     void LateUpdate()
     {
         if(!lockRotation) turnView();
+        else if (!rotateToPosition.Equals(Vector3.zero))
+        {
+            rotateToPosition.y = Camera.main.transform.position.y;
+            Camera.main.transform.LookAt(rotateToPosition);
+            if (secondCam != null) secondCam.transform.rotation = Camera.main.transform.rotation;
+            rotateToPosition = Vector3.zero; 
+        }
         if(!lockPosition) move();
     }
 
@@ -58,5 +66,10 @@ public class Movement : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivityUpdated = mouseSensitivity * PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
         else mouseSensitivityUpdated = mouseSensitivity;
+    }
+
+    public void rotateTo(Vector3 position)
+    {
+        rotateToPosition = position;
     }
 }
