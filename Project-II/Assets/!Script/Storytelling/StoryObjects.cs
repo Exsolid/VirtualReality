@@ -5,5 +5,6 @@ using UnityEngine;
 public enum StoryObjects
 {
     None,
-    Edgar
+    Edgar,
+    Margaret
 }
