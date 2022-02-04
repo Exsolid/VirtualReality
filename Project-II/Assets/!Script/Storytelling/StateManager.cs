@@ -17,37 +17,30 @@ public class StateManager : MonoBehaviour
     public StoryInfos getCurrentInfos(StoryObjects obj)
     {
         StoryInfos infos = new StoryInfos();
-
-        Vector3 rotateTo = new Vector3(0,0,0);
         switch (obj)
         {
             case StoryObjects.Edgar:
-                infos.Root = getEdgarsStory();
-                rotateTo = (edgar.transform.position + marg.transform.position) / 2;
-                rotateTo.y += 1.25f;
+                infos = getEdgarsStory(infos);
                 break;
             case StoryObjects.Margaret:
-                infos.Root = getMargsStory();
-                rotateTo = (edgar.transform.position + marg.transform.position) / 2;
-                rotateTo.y += 1.25f;
+                infos = getEdgarsStory(infos);
                 break;
             default:
                 break;
         }
-        infos.TalkingPoint = rotateTo;
         return infos;
     }
 
-    private DialogTreeNode getEdgarsStory()
+    private StoryInfos getEdgarsStory(StoryInfos infos)
     {
-        DialogTreeNode toReturn = null;
-        DialogTreeNode temp = null;
+        DialogTreeNode root = null;
+        DialogTreeNode temp;
         switch (currentState)
         {
             case GameplayStates.INTRO:
-                toReturn = new DialogTreeNode("Aah, old friend, good to see you, I am glad you could come here so promptly.", "Edgar");
-                toReturn.ChildNodes.Add(new DialogTreeNode("It has been a long time so of course you have not met my second wife. Let me introduce you to my beloved Margaret.", "Edgar"));
-                temp = toReturn.ChildNodes[0];
+                root = new DialogTreeNode("Aah, old friend, good to see you, I am glad you could come here so promptly.", "Edgar");
+                root.ChildNodes.Add(new DialogTreeNode("It has been a long time so of course you have not met my second wife. Let me introduce you to my beloved Margaret.", "Edgar"));
+                temp = root.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("It is a pleasure. Edgar has told me everything about you and your keen sense for mysteries.", "Margaret"));
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("Speaking of which, as you can surely gather from my letter, we are in dire need of you your help.", "Edgar"));
@@ -62,21 +55,28 @@ public class StateManager : MonoBehaviour
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("And you can also meet the rest of the family, they could have some information you can use.", "Edgar"));
 
+                Vector3 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
+                rotateTo.y += 1.25f;
+                infos.TalkingPoint = rotateTo;
+                break;
+
+            case GameplayStates.CHAPTER_ONE:
                 break;
         }
-        return toReturn;
+        infos.Root = root;
+        return infos;
     }
 
-    private DialogTreeNode getMargsStory()
+    private StoryInfos getMargsStory(StoryInfos infos)
     {
-        DialogTreeNode toReturn = null;
-        DialogTreeNode temp = null;
+        DialogTreeNode root = null;
+        DialogTreeNode temp;
         switch (currentState)
         {
             case GameplayStates.INTRO:
-                toReturn = new DialogTreeNode("Aah, old friend, good to see you, I am glad you could come here so promptly.", "Edgar");
-                toReturn.ChildNodes.Add(new DialogTreeNode("It has been a long time so of course you have not met my second wife. Let me introduce you to my beloved Margaret.", "Edgar"));
-                temp = toReturn.ChildNodes[0];
+                root = new DialogTreeNode("Aah, old friend, good to see you, I am glad you could come here so promptly.", "Edgar");
+                root.ChildNodes.Add(new DialogTreeNode("It has been a long time so of course you have not met my second wife. Let me introduce you to my beloved Margaret.", "Edgar"));
+                temp = root.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("It is a pleasure. Edgar has told me everything about you and your keen sense for mysteries.", "Margaret"));
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("Speaking of which, as you can surely gather from my letter, we are in dire need of you your help.", "Edgar"));
@@ -91,8 +91,12 @@ public class StateManager : MonoBehaviour
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("And you can also meet the rest of the family, they could have some information you can use.", "Edgar"));
 
+                Vector3 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
+                rotateTo.y += 1.25f;
+                infos.TalkingPoint = rotateTo;
                 break;
         }
-        return toReturn;
+        infos.Root = root;
+        return infos;
     }
 }
