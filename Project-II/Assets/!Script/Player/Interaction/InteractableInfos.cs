@@ -8,8 +8,10 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private bool useBlur;
     public bool FocusOnObject { get { return focusOnObject; } set { focusOnObject = value; } }
     [SerializeField] private bool focusOnObject;
-    public List<string> ShownText { get { return shownText; } set { shownText = value; } }
-    [SerializeField] private List<string> shownText;
+    public string ShownText { get { return shownText; } set { shownText = value; } }
+    [SerializeField] private string shownText;
+    public string Descriptor { get { return descriptor; } set { descriptor = value; } }
+    [SerializeField] private string descriptor;
     public bool Moveable { get { return moveable; } set { moveable = value; } }
     [SerializeField] private bool moveable;
     public StoryObjects StoryObject { get { return storyObject; }}

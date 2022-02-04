@@ -13,7 +13,9 @@ public class Interact : MonoBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private VolumeProfile volumeProfile;
 
-    [SerializeField] private Canvas canvasForDialog;
+    [SerializeField] private Image shownText;
+    [SerializeField] private Image shownDescriptor;
+
     [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
 
@@ -22,7 +24,7 @@ public class Interact : MonoBehaviour
 
     private GameObject objectInUse;
 
-    private int textCounter;
+    private DialogTreeNode currentText;
     void Update()
     {
         if(objectInUse != null && !GetComponent<PauseGame>().IsPaused)
@@ -56,20 +58,23 @@ public class Interact : MonoBehaviour
             Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
         }
-        if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = true;
-        if (!infos.StoryObject.Equals(StoryObjects.None))
+        if (infos.FocusOnObject)
         {
-            infos.ShownText.Clear();
-            infos.ShownText.AddRange(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).ShownText);
-            GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
+            gameObject.GetComponent<Movement>().LockRotation = true;
+            gameObject.GetComponent<Movement>().LockPosition = true;
+            if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint != Vector3.zero) GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
+            else GetComponent<Movement>().rotateTo(objectInUse.transform.position);
         }
-        if (infos.ShownText.Count > 0)
+        if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals(""))
         {
-            textCounter = 0;
-            canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
-            canvasForDialog.GetComponentInChildren<Image>().enabled = true;
+            currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
+            shownText.GetComponentInChildren<Text>().text = currentText == null ? infos.ShownText : currentText.ShownText;
+            shownText.enabled = true;
+
+            shownDescriptor.GetComponentInChildren<Text>().text = currentText == null ? infos.Descriptor : currentText.Descriptor;
+            shownDescriptor.enabled = true;
         }
-        if(infos.Moveable)
+        if (infos.Moveable)
         {
             Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
             rb.AddTorque(Vector3.one*20*Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
@@ -85,12 +90,25 @@ public class Interact : MonoBehaviour
         if(objectInUse != null)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-            if (infos.ShownText.Count - 1 != textCounter)
+            if (currentText != null && currentText.ChildNodes.Count > 0) currentText = currentText.ChildNodes[0];
+            else currentText = null;
+            if (currentText != null)
             {
-                textCounter++;
-                canvasForDialog.GetComponentInChildren<Text>().text = infos.ShownText[textCounter];
+                shownText.GetComponentInChildren<Text>().text = currentText.ShownText;
+                shownText.enabled = true;
+
+                shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
+                shownDescriptor.enabled = true;
                 return;
             }
+            else
+            {
+                shownText.GetComponentInChildren<Text>().text = "";
+                shownText.GetComponentInChildren<Image>().enabled = false;
+                shownDescriptor.GetComponentInChildren<Text>().text = "";
+                shownDescriptor.GetComponentInChildren<Image>().enabled = false;
+            }
+
             if (infos.UseBlur)
             {
                 volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
@@ -98,11 +116,10 @@ public class Interact : MonoBehaviour
                 Camera.main.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
                 objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             }
-            if (infos.FocusOnObject) gameObject.GetComponent<Movement>().LockRotation = false;
-            if (infos.ShownText.Count - 1 == textCounter)
+            if (infos.FocusOnObject)
             {
-                canvasForDialog.GetComponentInChildren<Text>().text = "";
-                canvasForDialog.GetComponentInChildren<Image>().enabled = false;
+                gameObject.GetComponent<Movement>().LockRotation = false;
+                gameObject.GetComponent<Movement>().LockPosition = false;
             }
             objectInUse = null;
         }
@@ -118,8 +135,4 @@ public class Interact : MonoBehaviour
         return objectInUse != null;
     }
 
-    public void switchObject(GameObject gameObject)
-    {
-        objectInUse = gameObject;
-    }
 }

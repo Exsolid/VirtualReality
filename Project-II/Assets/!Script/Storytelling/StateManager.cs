@@ -17,31 +17,31 @@ public class StateManager : MonoBehaviour
     public StoryInfos getCurrentInfos(StoryObjects obj)
     {
         StoryInfos infos = new StoryInfos();
-        List<string> toReturn = new List<string>();
+
         Vector3 rotateTo = new Vector3(0,0,0);
         switch (obj)
         {
             case StoryObjects.Edgar:
-                toReturn = getEdgarsStory();
+                infos.Root = getEdgarsStory();
                 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
+                rotateTo.y += 1.25f;
                 break;
             default:
-                toReturn.Clear();
                 break;
         }
-        infos.ShownText = toReturn;
         infos.TalkingPoint = rotateTo;
         return infos;
     }
 
-    private List<string> getEdgarsStory()
+    private DialogTreeNode getEdgarsStory()
     {
-        List<string> toReturn = new List<string>();
+        DialogTreeNode toReturn = null;
+        DialogTreeNode temp = null;
         switch (currentState)
         {
             case GameplayStates.INTRO:
-                toReturn.Add("Aah, old friend, good to see you, I am glad you could come here so promptly.");
-                toReturn.Add("It has been a long time so of course you have not met my second wife. Let me introduce you to my beloved Margaret.");
+                toReturn = new DialogTreeNode("BEEP", "Edgar");
+                toReturn.ChildNodes.Add(new DialogTreeNode("Boop", "Edgar"));
                 break;
         }
         return toReturn;

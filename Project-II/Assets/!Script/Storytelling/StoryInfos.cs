@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StoryInfos
 {
-    public List<string> ShownText { get { return shownText; } set { shownText = value; } }
-    private List<string> shownText;
-
+    public DialogTreeNode Root { get { return root; } set { root = value; } }
+    private DialogTreeNode root;
     public Vector3 TalkingPoint { get { return talkingPoint; } set { talkingPoint = value; } }
     private Vector3 talkingPoint;
 }

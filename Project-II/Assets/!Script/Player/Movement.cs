@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private string movementActionName;
     [SerializeField] private string viewActionName;
 
+    public bool LockPosition { get { return lockPosition; } set { lockPosition = value; } }
     [SerializeField] private bool lockPosition;
 
     [SerializeField] private Camera secondCam;
@@ -36,7 +37,6 @@ public class Movement : MonoBehaviour
         if(!lockRotation) turnView();
         else if (!rotateToPosition.Equals(Vector3.zero))
         {
-            rotateToPosition.y = Camera.main.transform.position.y;
             Camera.main.transform.LookAt(rotateToPosition);
             if (secondCam != null) secondCam.transform.rotation = Camera.main.transform.rotation;
             rotateToPosition = Vector3.zero; 
