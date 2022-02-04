@@ -15,6 +15,8 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private Image shownText;
     [SerializeField] private Image shownDescriptor;
+    [SerializeField] private Image option1;
+    [SerializeField] private Image option2;
 
     [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
@@ -25,6 +27,8 @@ public class Interact : MonoBehaviour
     private GameObject objectInUse;
 
     private DialogTreeNode currentText;
+
+    private int selectedOption;
     void Update()
     {
         if(objectInUse != null && !GetComponent<PauseGame>().IsPaused)
@@ -58,7 +62,7 @@ public class Interact : MonoBehaviour
             Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
         }
-        if (infos.FocusOnObject)
+        if (infos.FocusOnObject && GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null)
         {
             gameObject.GetComponent<Movement>().LockRotation = true;
             gameObject.GetComponent<Movement>().LockPosition = true;
@@ -67,7 +71,21 @@ public class Interact : MonoBehaviour
         }
         if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals(""))
         {
+            selectedOption = -1;
             currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
+            if (currentText.Options.Count == 2)
+            {
+                option1.enabled = true;
+                option2.enabled = true;
+                option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+                option2.GetComponentInChildren<Text>().text = currentText.Options[1];
+
+            }
+            else if (currentText.Options.Count == 1)
+            {
+                option1.enabled = true;
+                option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+            }
             shownText.GetComponentInChildren<Text>().text = currentText == null ? infos.ShownText : currentText.ShownText;
             shownText.enabled = true;
 
@@ -90,7 +108,40 @@ public class Interact : MonoBehaviour
         if(objectInUse != null)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-            if (currentText != null && currentText.ChildNodes.Count > 0) currentText = currentText.ChildNodes[0];
+            if (currentText != null && currentText.Options.Count == 0 && currentText.ChildNodes.Count == 1) currentText = currentText.ChildNodes[0];
+            else if(currentText != null && currentText.Options.Count > 0)
+            {
+                switch (selectedOption)
+                {
+                    case -1:
+                        return;
+                    case 0:
+                        if (currentText.ChildNodes[0].ShownText != "") currentText = currentText.ChildNodes[0];
+                        else currentText = null;
+                        break;
+                    case 1:
+                        if (currentText.ChildNodes[1].ShownText != "") currentText = currentText.ChildNodes[1];
+                        else currentText = null;
+                        break;
+                }
+                selectedOption = -1;
+                option1.enabled = false;
+                option2.enabled = false;
+                option1.GetComponentInChildren<Text>().text = "";
+                option2.GetComponentInChildren<Text>().text = "";
+                if (currentText != null && currentText.Options.Count == 2)
+                {
+                    option1.enabled = true;
+                    option2.enabled = true;
+                    option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+                    option2.GetComponentInChildren<Text>().text = currentText.Options[1];
+                }
+                else if (currentText != null && currentText.Options.Count == 1)
+                {
+                    option1.enabled = true;
+                    option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+                }
+            }
             else currentText = null;
             if (currentText != null)
             {
@@ -103,6 +154,7 @@ public class Interact : MonoBehaviour
             }
             else
             {
+                if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).NextState != 0) GetComponent<StateManager>().setState(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).NextState);
                 shownText.GetComponentInChildren<Text>().text = "";
                 shownText.GetComponentInChildren<Image>().enabled = false;
                 shownDescriptor.GetComponentInChildren<Text>().text = "";
@@ -135,4 +187,13 @@ public class Interact : MonoBehaviour
         return objectInUse != null;
     }
 
+    public bool setOption(int option)
+    {
+        if (currentText != null && option < currentText.Options.Count)
+        {
+            selectedOption = option;
+            return true;
+        }
+        return false;
+    }
 }

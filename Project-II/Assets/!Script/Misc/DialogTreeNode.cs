@@ -18,5 +18,6 @@ public class DialogTreeNode
         this.shownText = shownText;
         this.descriptor = descriptor;
         childNodes = new List<DialogTreeNode>();
+        options = new List<string>();
     }
 }

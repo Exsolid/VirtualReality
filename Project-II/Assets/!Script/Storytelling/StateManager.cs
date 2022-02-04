@@ -14,6 +14,11 @@ public class StateManager : MonoBehaviour
         else currentState = GameplayStates.INTRO;
     }
 
+    public void setState(int newState)
+    {
+        currentState = newState;
+    }
+
     public StoryInfos getCurrentInfos(StoryObjects obj)
     {
         StoryInfos infos = new StoryInfos();
@@ -23,7 +28,7 @@ public class StateManager : MonoBehaviour
                 infos = getEdgarsStory(infos);
                 break;
             case StoryObjects.Margaret:
-                infos = getEdgarsStory(infos);
+                infos = getMargsStory(infos);
                 break;
             default:
                 break;
@@ -35,6 +40,7 @@ public class StateManager : MonoBehaviour
     {
         DialogTreeNode root = null;
         DialogTreeNode temp;
+        Vector3 rotateTo = Vector3.zero;
         switch (currentState)
         {
             case GameplayStates.INTRO:
@@ -55,13 +61,32 @@ public class StateManager : MonoBehaviour
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("And you can also meet the rest of the family, they could have some information you can use.", "Edgar"));
 
-                Vector3 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
+                rotateTo = (edgar.transform.position + marg.transform.position) / 2;
                 rotateTo.y += 1.25f;
                 infos.TalkingPoint = rotateTo;
+                infos.NextState = GameplayStates.CHAPTER_ONE;
                 break;
 
             case GameplayStates.CHAPTER_ONE:
+                root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.ChildNodes.Add(new DialogTreeNode("She meant the world to me and was the spitting image of my late wife...", "Edgar"));
+                temp = root.ChildNodes[0];
+                temp.Options.Add("Did Elizabeth ever argue with anyone?");
+                temp.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and eyeryone loved her.", "Edgar"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("I don't have any more questions at the moment.");
+                temp.Options.Add("Have you perhaps seen the key to the living room?");
+                temp.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
+                temp.ChildNodes.Add(new DialogTreeNode("Not recently, is it locked again?", "Edgar"));
+                temp = temp.ChildNodes[0];
                 break;
+        }
+        if(rotateTo == Vector3.zero)
+        {
+            rotateTo = edgar.transform.position;
+            rotateTo.y += 1.25f;
+            infos.TalkingPoint = rotateTo;
         }
         infos.Root = root;
         return infos;
@@ -71,6 +96,7 @@ public class StateManager : MonoBehaviour
     {
         DialogTreeNode root = null;
         DialogTreeNode temp;
+        Vector3 rotateTo = Vector3.zero;
         switch (currentState)
         {
             case GameplayStates.INTRO:
@@ -91,12 +117,19 @@ public class StateManager : MonoBehaviour
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("And you can also meet the rest of the family, they could have some information you can use.", "Edgar"));
 
-                Vector3 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
+                rotateTo = (edgar.transform.position + marg.transform.position) / 2;
                 rotateTo.y += 1.25f;
                 infos.TalkingPoint = rotateTo;
+                infos.NextState = GameplayStates.CHAPTER_ONE;
                 break;
         }
         infos.Root = root;
+        if (rotateTo == Vector3.zero)
+        {
+            rotateTo = marg.transform.position;
+            rotateTo.y += 1.25f;
+            infos.TalkingPoint = rotateTo;
+        }
         return infos;
     }
 }
