@@ -20,4 +20,6 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private string gotoScene;
     public GameObject ObjectToShow { get { return objectToShow; } }
     [SerializeField] private GameObject objectToShow;
+    public bool RotateOnX { get { return rotateOnX; } set { rotateOnX = value; } }
+    [SerializeField] private bool rotateOnX;
 }

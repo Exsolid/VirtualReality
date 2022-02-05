@@ -280,20 +280,11 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE:
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
-                root = new DialogTreeNode("The page seems to have been ripped out of a book.", "A Ripped Page");
-                root.Options.Add("Inspect page");
-                root.ChildNodes.Add(new DialogTreeNode("Details?", "A Ripped Page"));
-                temp = root.ChildNodes[0];
-                temp.ShowObject = true;
-
-                temp.Options.Add("Put page back");
-                temp.ChildNodes.Add(new DialogTreeNode("", "A Ripped Page"));
-                temp.NextState = GameplayStates.CHAPTER_ONE_CLUE_ONE;
                 break;
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
-                root = new DialogTreeNode("The page seems to have been ripped out of a book.", "A Ripped Page");
+                root = new DialogTreeNode("The page seems to have been ripped out of the book about tea.", "A Ripped Page");
                 root.Options.Add("Inspect page");
-                root.ChildNodes.Add(new DialogTreeNode("Details?", "A Ripped Page"));
+                root.ChildNodes.Add(new DialogTreeNode("Is this what Cassilda wanted to know?", "A Ripped Page"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
 
@@ -320,9 +311,9 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE:
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
-                root = new DialogTreeNode("Seems to be about tea", "A Book");
+                root = new DialogTreeNode("Seems to be about tea.", "A Book");
                 root.Options.Add("Read book");
-                root.ChildNodes.Add(new DialogTreeNode("You find a ripped page.", "A Book"));
+                root.ChildNodes.Add(new DialogTreeNode("The information I have been looking for has been ripped out.", "A Book"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
 
@@ -330,16 +321,16 @@ public class StateManager : MonoBehaviour
                 temp.ChildNodes.Add(new DialogTreeNode("", "A Book"));
                 temp.NextState = GameplayStates.CHAPTER_ONE_CLUE_ONE;
                 break;
+            case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
-                root = new DialogTreeNode("Seems to be about tea", "A Book");
+                root = new DialogTreeNode("Seems to be about tea.", "A Book");
                 root.Options.Add("Read book");
-                root.ChildNodes.Add(new DialogTreeNode("You find a ripped page.", "A Book"));
+                root.ChildNodes.Add(new DialogTreeNode("The information I have been looking for has been ripped out.", "A Book"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
 
                 temp.Options.Add("Close book");
                 temp.ChildNodes.Add(new DialogTreeNode("", "A Book"));
-                root.NextState = GameplayStates.CHAPTER_ONE_CLUE_TWO;
                 break;
         }
         infos.Root = root;

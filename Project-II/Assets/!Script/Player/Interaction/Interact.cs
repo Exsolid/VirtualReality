@@ -42,7 +42,7 @@ public class Interact : MonoBehaviour
 
         if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused)
         {
-            Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
+            Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.6f, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
 
             if (hitInteractable.transform != null)
             {
@@ -92,7 +92,7 @@ public class Interact : MonoBehaviour
             if (currentText != null && currentText.ShowObject)
             {
                 objectToShow = Instantiate(infos.ObjectToShow);
-                objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
+                objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.4f;
                 objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
                 objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
             }
@@ -157,8 +157,10 @@ public class Interact : MonoBehaviour
                 if (currentText != null && currentText.ShowObject)
                 {
                     objectToShow = Instantiate(infos.ObjectToShow);
-                    objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.5f;
+                    objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.4f;
+                    objectToShow.transform.position += new Vector3(0,0.05f,0);
                     objectToShow.transform.LookAt(Camera.main.transform);
+                    if (infos.RotateOnX) objectToShow.transform.Rotate(new Vector3(90,0,0), Space.Self);
                     objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
                     objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
                 }
@@ -175,6 +177,11 @@ public class Interact : MonoBehaviour
                 shownText.GetComponentInChildren<Image>().enabled = false;
                 shownDescriptor.GetComponentInChildren<Text>().text = "";
                 shownDescriptor.GetComponentInChildren<Image>().enabled = false;
+                if (objectToShow != null)
+                {
+                    Destroy(objectToShow);
+                    objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
+                }
             }
 
             if (infos.UseBlur)
