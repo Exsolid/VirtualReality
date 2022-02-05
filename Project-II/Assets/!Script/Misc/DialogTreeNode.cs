@@ -14,6 +14,8 @@ public class DialogTreeNode
     private List<DialogTreeNode> childNodes;
     public int NextState { get { return nextState; } set { nextState = value; } }
     private int nextState;
+    public bool ShowObject { get { return showObject; } set { showObject = value; } }
+    private bool showObject;
 
     public DialogTreeNode(string shownText, string descriptor)
     {

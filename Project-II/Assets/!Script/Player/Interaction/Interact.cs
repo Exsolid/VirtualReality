@@ -15,8 +15,7 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private Image shownText;
     [SerializeField] private Image shownDescriptor;
-    [SerializeField] private Image option1;
-    [SerializeField] private Image option2;
+    [SerializeField] private List<Image> options;
 
     [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
@@ -25,13 +24,14 @@ public class Interact : MonoBehaviour
     [SerializeField] private string interactableLayerName;
 
     private GameObject objectInUse;
+    private GameObject objectToShow;
 
     private DialogTreeNode currentText;
 
     private int selectedOption;
     void Update()
     {
-        if(objectInUse != null && !GetComponent<PauseGame>().IsPaused)
+        if (objectInUse != null && !GetComponent<PauseGame>().IsPaused)
         {
             if (input.actions[returnActionName].triggered || input.actions[interactActionName].triggered)
             {
@@ -75,32 +75,35 @@ public class Interact : MonoBehaviour
         {
             selectedOption = -1;
             currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
-            if (currentText != null && currentText.Options.Count == 2)
+            if (currentText != null)
             {
-                option1.enabled = true;
-                option2.enabled = true;
-                option1.GetComponentInChildren<Text>().text = currentText.Options[0];
-                option2.GetComponentInChildren<Text>().text = currentText.Options[1];
-
-            }
-            else if (currentText != null && currentText.Options.Count == 1)
-            {
-                option1.enabled = true;
-                option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+                for (int i = 0; i < currentText.Options.Count; i++)
+                {
+                    options[i].enabled = true;
+                    options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
+                }
             }
             shownText.GetComponentInChildren<Text>().text = currentText == null ? infos.ShownText : currentText.ShownText;
             shownText.enabled = true;
 
             shownDescriptor.GetComponentInChildren<Text>().text = currentText == null ? infos.Descriptor : currentText.Descriptor;
             shownDescriptor.enabled = true;
+            if (currentText != null && currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
+            if (currentText != null && currentText.ShowObject)
+            {
+                objectToShow = Instantiate(infos.ObjectToShow);
+                objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2;
+                objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
+                objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
+            }
         }
         if (infos.Moveable)
         {
             Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
-            rb.AddTorque(Vector3.one*20*Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
+            rb.AddTorque(Vector3.one * 20 * Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
             objectInUse = null;
         }
-        if(infos.GotoScene != "")
+        if (infos.GotoScene != "")
         {
             SceneManager.LoadScene(infos.GotoScene);
         }
@@ -108,11 +111,11 @@ public class Interact : MonoBehaviour
 
     public void resetInteraction()
     {
-        if(objectInUse != null)
+        if (objectInUse != null)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
             if (currentText != null && currentText.Options.Count == 0 && currentText.ChildNodes.Count == 1) currentText = currentText.ChildNodes[0];
-            else if(currentText != null && currentText.Options.Count > 0)
+            else if (currentText != null && currentText.Options.Count > 0)
             {
                 switch (selectedOption)
                 {
@@ -128,21 +131,18 @@ public class Interact : MonoBehaviour
                         break;
                 }
                 selectedOption = -1;
-                option1.enabled = false;
-                option2.enabled = false;
-                option1.GetComponentInChildren<Text>().text = "";
-                option2.GetComponentInChildren<Text>().text = "";
-                if (currentText != null && currentText.Options.Count == 2)
+                for (int i = 0; i < options.Count; i++)
                 {
-                    option1.enabled = true;
-                    option2.enabled = true;
-                    option1.GetComponentInChildren<Text>().text = currentText.Options[0];
-                    option2.GetComponentInChildren<Text>().text = currentText.Options[1];
+                    options[i].enabled = false;
+                    options[i].GetComponentInChildren<Text>().text = "";
                 }
-                else if (currentText != null && currentText.Options.Count == 1)
+                if (currentText != null)
                 {
-                    option1.enabled = true;
-                    option1.GetComponentInChildren<Text>().text = currentText.Options[0];
+                    for (int i = 0; i < currentText.Options.Count; i++)
+                    {
+                        options[i].enabled = true;
+                        options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
+                    }
                 }
             }
             else currentText = null;
@@ -153,7 +153,20 @@ public class Interact : MonoBehaviour
 
                 shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
                 shownDescriptor.enabled = true;
-                if(currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
+                if (currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
+                if (currentText != null && currentText.ShowObject)
+                {
+                    objectToShow = Instantiate(infos.ObjectToShow);
+                    objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.5f;
+                    objectToShow.transform.LookAt(Camera.main.transform);
+                    objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
+                    objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
+                }
+                if (objectToShow != null && !currentText.ShowObject)
+                {
+                    Destroy(objectToShow);
+                    objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
+                }
                 return;
             }
             else

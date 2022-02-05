@@ -10,5 +10,7 @@ public enum StoryObjects
     Camilla,
     Cassilda,
     Olivia,
-    Richard
+    Richard,
+    TeaBook,
+    Drawings
 }

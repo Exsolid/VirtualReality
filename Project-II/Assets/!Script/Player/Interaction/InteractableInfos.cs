@@ -18,4 +18,6 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private StoryObjects storyObject; 
     public string GotoScene { get { return gotoScene; } set { gotoScene = value; } }
     [SerializeField] private string gotoScene;
+    public GameObject ObjectToShow { get { return objectToShow; } }
+    [SerializeField] private GameObject objectToShow;
 }
