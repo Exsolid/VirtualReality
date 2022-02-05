@@ -62,10 +62,12 @@ public class Interact : MonoBehaviour
             Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
         }
-        if (infos.FocusOnObject && GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null)
+        if (infos.FocusOnObject && (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals("")))
         {
             gameObject.GetComponent<Movement>().LockRotation = true;
             gameObject.GetComponent<Movement>().LockPosition = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint != Vector3.zero) GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
             else GetComponent<Movement>().rotateTo(objectInUse.transform.position);
         }
@@ -73,7 +75,7 @@ public class Interact : MonoBehaviour
         {
             selectedOption = -1;
             currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
-            if (currentText.Options.Count == 2)
+            if (currentText != null && currentText.Options.Count == 2)
             {
                 option1.enabled = true;
                 option2.enabled = true;
@@ -81,7 +83,7 @@ public class Interact : MonoBehaviour
                 option2.GetComponentInChildren<Text>().text = currentText.Options[1];
 
             }
-            else if (currentText.Options.Count == 1)
+            else if (currentText != null && currentText.Options.Count == 1)
             {
                 option1.enabled = true;
                 option1.GetComponentInChildren<Text>().text = currentText.Options[0];
@@ -96,6 +98,7 @@ public class Interact : MonoBehaviour
         {
             Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
             rb.AddTorque(Vector3.one*20*Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
+            objectInUse = null;
         }
         if(infos.GotoScene != "")
         {
@@ -150,11 +153,11 @@ public class Interact : MonoBehaviour
 
                 shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
                 shownDescriptor.enabled = true;
+                if(currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
                 return;
             }
             else
             {
-                if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).NextState != 0) GetComponent<StateManager>().setState(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).NextState);
                 shownText.GetComponentInChildren<Text>().text = "";
                 shownText.GetComponentInChildren<Image>().enabled = false;
                 shownDescriptor.GetComponentInChildren<Text>().text = "";
@@ -172,6 +175,8 @@ public class Interact : MonoBehaviour
             {
                 gameObject.GetComponent<Movement>().LockRotation = false;
                 gameObject.GetComponent<Movement>().LockPosition = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             objectInUse = null;
         }

@@ -545,7 +545,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   skyType:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3
   skyAmbientMode:
     m_OverrideState: 0
     m_Value: 0
@@ -1043,7 +1043,7 @@ MonoBehaviour:
     showEyeDropper: 1
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.43711612, g: 0.4016999, b: 0.5566038, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1

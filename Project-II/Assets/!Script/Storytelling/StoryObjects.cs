@@ -6,5 +6,9 @@ public enum StoryObjects
 {
     None,
     Edgar,
-    Margaret
+    Margaret,
+    Camilla,
+    Cassilda,
+    Olivia,
+    Richard
 }

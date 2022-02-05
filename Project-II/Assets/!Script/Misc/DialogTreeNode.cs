@@ -12,6 +12,8 @@ public class DialogTreeNode
     private List<string> options;
     public List<DialogTreeNode> ChildNodes { get { return childNodes; } set { childNodes = value; } }
     private List<DialogTreeNode> childNodes;
+    public int NextState { get { return nextState; } set { nextState = value; } }
+    private int nextState;
 
     public DialogTreeNode(string shownText, string descriptor)
     {
