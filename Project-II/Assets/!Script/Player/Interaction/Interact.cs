@@ -43,8 +43,7 @@ public class Interact : MonoBehaviour
         if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused)
         {
             Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.6f, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
-
-            if (hitInteractable.transform != null)
+            if (hitInteractable.transform != null && hitInteractable.collider.gameObject.GetComponent<InteractableInfos>().InteractableAfter <= GetComponent<StateManager>().CurrentState)
             {
                 objectInUse = hitInteractable.collider.gameObject;
                 interact();
@@ -117,19 +116,8 @@ public class Interact : MonoBehaviour
             if (currentText != null && currentText.Options.Count == 0 && currentText.ChildNodes.Count == 1) currentText = currentText.ChildNodes[0];
             else if (currentText != null && currentText.Options.Count > 0)
             {
-                switch (selectedOption)
-                {
-                    case -1:
-                        return;
-                    case 0:
-                        if (currentText.ChildNodes[0].ShownText != "") currentText = currentText.ChildNodes[0];
-                        else currentText = null;
-                        break;
-                    case 1:
-                        if (currentText.ChildNodes[1].ShownText != "") currentText = currentText.ChildNodes[1];
-                        else currentText = null;
-                        break;
-                }
+                if (selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
+                else if(selectedOption != -1) currentText = null;
                 selectedOption = -1;
                 for (int i = 0; i < options.Count; i++)
                 {

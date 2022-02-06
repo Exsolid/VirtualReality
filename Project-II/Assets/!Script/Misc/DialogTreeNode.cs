@@ -12,8 +12,8 @@ public class DialogTreeNode
     private List<string> options;
     public List<DialogTreeNode> ChildNodes { get { return childNodes; } set { childNodes = value; } }
     private List<DialogTreeNode> childNodes;
-    public int NextState { get { return nextState; } set { nextState = value; } }
-    private int nextState;
+    public GameplayStates NextState { get { return nextState; } set { nextState = value; } }
+    private GameplayStates nextState;
     public bool ShowObject { get { return showObject; } set { showObject = value; } }
     private bool showObject;
 

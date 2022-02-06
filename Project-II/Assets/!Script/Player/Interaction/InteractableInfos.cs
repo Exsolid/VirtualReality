@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractableInfos : MonoBehaviour
 {
+    public GameplayStates InteractableAfter { get { return interactableAfter; } set { interactableAfter = value; } }
+    [SerializeField] private GameplayStates interactableAfter;
     public bool UseBlur { get { return useBlur; } set { useBlur = value; } }
     [SerializeField] private bool useBlur;
     public bool FocusOnObject { get { return focusOnObject; } set { focusOnObject = value; } }

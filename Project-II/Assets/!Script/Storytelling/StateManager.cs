@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    private int currentState;
+
+    public GameplayStates CurrentState { get { return currentState; } }
+    private GameplayStates currentState;
     [SerializeField] private GameObject edgar;
     [SerializeField] private GameObject marg;
     [SerializeField] private GameObject camilla;
     [SerializeField] private GameObject cassilda;
+    [SerializeField] private GameObject vase;
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey(PlayerPrefKeys.GAMEPLAY_STATE)) currentState = PlayerPrefs.GetInt(PlayerPrefKeys.GAMEPLAY_STATE);
-        else currentState = GameplayStates.INTRO;
+        // if (PlayerPrefs.HasKey(PlayerPrefKeys.GAMEPLAY_STATE)) currentState = PlayerPrefs.GetInt(PlayerPrefKeys.GAMEPLAY_STATE);
+        // else currentState = GameplayStates.INTRO;
+        currentState = GameplayStates.INTRO;
     }
 
-    public void setState(int newState)
+    public void setState(GameplayStates newState)
     {
         currentState = newState;
     }
@@ -39,10 +43,13 @@ public class StateManager : MonoBehaviour
                 infos = getCassildasStory(infos);
                 break;
             case StoryObjects.TeaBook:
-                infos = getTeaBookStory(infos);
+                infos = getTeaBookStory(infos); 
                 break;
             case StoryObjects.Drawings:
                 infos = getDrawingsStory(infos);
+                break;
+            case StoryObjects.Vase:
+                infos = getVaseStory(infos);
                 break;
             default:
                 break;
@@ -86,6 +93,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
                 root.Options.Add("How was your relationship with Elizabeth?");
                 root.ChildNodes.Add(new DialogTreeNode("She meant the world to me and was the spitting image of my late wife...", "Edgar"));
@@ -97,6 +105,18 @@ public class StateManager : MonoBehaviour
                 temp.Options.Add("Have you perhaps seen the key to the living room?");
                 temp.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
                 temp.ChildNodes.Add(new DialogTreeNode("Not recently, is it locked again?", "Edgar"));
+                temp = temp.ChildNodes[0];
+                break;
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.ChildNodes.Add(new DialogTreeNode("She meant the world to me and was the spitting image of my late wife...", "Edgar"));
+                temp = root.ChildNodes[0];
+                temp.Options.Add("Did Elizabeth ever argue with anyone?");
+                temp.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and everyone loved her.", "Edgar"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("I don't have any more questions at the moment.");
+                temp.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
                 temp = temp.ChildNodes[0];
                 break;
         }
@@ -145,6 +165,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("Yes? Do you need anything?", "Margaret");
                 root.Options.Add("How was your relationship with Elizabeth?");
                 root.ChildNodes.Add(new DialogTreeNode("She might not have been my own daughter, but I loved her just the same.", "Margaret"));
@@ -156,6 +177,19 @@ public class StateManager : MonoBehaviour
                 temp.Options.Add("Have you perhaps seen the key to the living room?");
                 temp.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
                 temp.ChildNodes.Add(new DialogTreeNode("No, I have not, I'm sorry.", "Margaret"));
+                temp = temp.ChildNodes[0];
+                break;
+
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("Yes? Do you need anything?", "Margaret");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.ChildNodes.Add(new DialogTreeNode("She might not have been my own daughter, but I loved her just the same.", "Margaret"));
+                temp = root.ChildNodes[0];
+                temp.Options.Add("Did Elizabeth ever argue with anyone?");
+                temp.ChildNodes.Add(new DialogTreeNode("Oh, just the usual banter between siblings. But I assure you both of my daughters loved her like a sister.", "Margaret"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("I don't have any more questions at the moment.");
+                temp.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
                 temp = temp.ChildNodes[0];
                 break;
         }
@@ -184,6 +218,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("Yes??", "Camilla");
                 root.Options.Add("Who are you?");
                 root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson", "Camilla"));
@@ -199,6 +234,21 @@ public class StateManager : MonoBehaviour
                 temp.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
                 temp.ChildNodes.Add(new DialogTreeNode("No, I have not. Sometimes things just go missing in this house, it's really weird.", "Camilla"));
                 temp = temp.ChildNodes[0];
+                break;
+
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("Yes??", "Camilla");
+                root.Options.Add("Who are you?");
+                root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson", "Camilla"));
+                temp = root.ChildNodes[0];
+                temp.Options.Add("How was your relationship with Elizabeth?");
+                temp.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Margaret"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("Did Elizabeth ever argue with anyone?");
+                temp.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("I don't have any more questions at the moment.");
+                temp.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
                 break;
         }
         if (rotateTo == Vector3.zero)
@@ -251,10 +301,34 @@ public class StateManager : MonoBehaviour
                 break;
 
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
-
-                root = new DialogTreeNode("TEMP", "Cassilda");
+                root = new DialogTreeNode("So? Did you find the answer?", "Cassilda");
+                root.Options.Add("Yes, there is no difference.");
+                root.Options.Add("In Cornwall you add the jam first, then the cream. In Devon it's the other way around.");
+                root.Options.Add("In Cornwall you add the cream first, then the jam. In Devon it's the other way around.");
                 root.Options.Add("No, I have not.");
+                root.ChildNodes.Add(new DialogTreeNode("No, I don't think that's right. I'm sure it's something different.", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("Yes, that's it. How could I forget? To find the key to the living room you might want to take a closer look at the vase in the dining room.", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("No, I don't think that's right. I'm sure it's something different.", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(new DialogTreeNode("I think I remember seeing the key somewhere around there. Good luck!", "Cassilda"));
+                temp.NextState = GameplayStates.CHAPTER_ONE_SOLVED;
+                break;
+            case GameplayStates.CHAPTER_ONE_SOLVED:
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("Hello there, you must be the detective Edgar has been talking about! That's so exciting! Of course, I will help however I can.", "Cassilda");
+                root.Options.Add("Who are you?");
+                root.ChildNodes.Add(new DialogTreeNode("Oh, where are my manners? I am Cassilda Thompson, Margaret’s daughter. Edgar is my stepfather. The grumpy one over there is my twin sister.", "Cassilda"));
+                temp = root.ChildNodes[0];
+                temp.Options.Add("How was your relationship with Elizabeth?");
+                temp.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("Did Elizabeth ever argue with anyone?");
+                temp.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
+                temp = temp.ChildNodes[0];
+                temp.Options.Add("I don't have any more questions at the moment.");
+                temp.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
+
                 break;
         }
         if (rotateTo == Vector3.zero)
@@ -282,6 +356,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
                 break;
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
+            case GameplayStates.CHAPTER_ONE_CLUE_TWO:
                 root = new DialogTreeNode("The page seems to have been ripped out of the book about tea.", "A Ripped Page");
                 root.Options.Add("Inspect page");
                 root.ChildNodes.Add(new DialogTreeNode("Is this what Cassilda wanted to know?", "A Ripped Page"));
@@ -291,6 +366,17 @@ public class StateManager : MonoBehaviour
                 temp.Options.Add("Put page back");
                 temp.ChildNodes.Add(new DialogTreeNode("", "A Ripped Page"));
                 root.NextState = GameplayStates.CHAPTER_ONE_CLUE_TWO;
+                break;
+            case GameplayStates.CHAPTER_ONE_SOLVED:
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("The page seems to have been ripped out of the book about tea.", "A Ripped Page");
+                root.Options.Add("Inspect page");
+                root.ChildNodes.Add(new DialogTreeNode("It is about cream tea.", "A Ripped Page"));
+                temp = root.ChildNodes[0];
+                temp.ShowObject = true;
+
+                temp.Options.Add("Put page back");
+                temp.ChildNodes.Add(new DialogTreeNode("", "A Ripped Page"));
                 break;
         }
         infos.Root = root;
@@ -313,7 +399,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
                 root = new DialogTreeNode("Seems to be about tea.", "A Book");
                 root.Options.Add("Read book");
-                root.ChildNodes.Add(new DialogTreeNode("The information I have been looking for has been ripped out.", "A Book"));
+                root.ChildNodes.Add(new DialogTreeNode("The information I am looking for has been ripped out.", "A Book"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
 
@@ -323,6 +409,8 @@ public class StateManager : MonoBehaviour
                 break;
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
+            case GameplayStates.CHAPTER_ONE_SOLVED:
+            case GameplayStates.CHAPTER_TWO:
                 root = new DialogTreeNode("Seems to be about tea.", "A Book");
                 root.Options.Add("Read book");
                 root.ChildNodes.Add(new DialogTreeNode("The information I have been looking for has been ripped out.", "A Book"));
@@ -332,6 +420,42 @@ public class StateManager : MonoBehaviour
                 temp.Options.Add("Close book");
                 temp.ChildNodes.Add(new DialogTreeNode("", "A Book"));
                 break;
+        }
+        infos.Root = root;
+        return infos;
+    }
+    private StoryInfos getVaseStory(StoryInfos infos)
+    {
+        DialogTreeNode root = null;
+        DialogTreeNode temp;
+        Vector3 rotateTo = Vector3.zero;
+        switch (currentState)
+        {
+            case GameplayStates.CHAPTER_ONE_SOLVED:
+                root = new DialogTreeNode("It is round.", "A Vase");
+                root.Options.Add("Search");
+                root.ChildNodes.Add(new DialogTreeNode("You find a key!", "A Vase"));
+                temp = root.ChildNodes[0];
+                temp.ShowObject = true;
+
+                temp.Options.Add("Go away");
+                temp.ChildNodes.Add(new DialogTreeNode("", "A Vase"));
+                temp.NextState = GameplayStates.CHAPTER_TWO;
+                break;
+            case GameplayStates.INTRO:
+            case GameplayStates.CHAPTER_ONE:
+            case GameplayStates.CHAPTER_ONE_UNSOLVED:
+            case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_CLUE_ONE:
+            case GameplayStates.CHAPTER_TWO:
+                root = new DialogTreeNode("It is round.", "A Vase");
+                break;
+        }
+        if (rotateTo == Vector3.zero)
+        {
+            rotateTo = vase.transform.position;
+            rotateTo.y += 0.3f;
+            infos.TalkingPoint = rotateTo;
         }
         infos.Root = root;
         return infos;
