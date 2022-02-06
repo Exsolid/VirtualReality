@@ -450,7 +450,7 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("It is round.", "A Vase");
                 root.Options.Add("Search");
-                root.ChildNodes.Add(new DialogTreeNode("You find a key!", "A Vase"));
+                root.ChildNodes.Add(new DialogTreeNode("You found a key!", "A Vase"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
 
