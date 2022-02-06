@@ -23,6 +23,7 @@ public class Interact : MonoBehaviour
     [SerializeField] private string interactingLayerName;
     [SerializeField] private string interactableLayerName;
 
+    public GameObject ObjectInUse { get { return objectInUse; }  set { objectInUse = value; } }
     private GameObject objectInUse;
     private GameObject objectToShow;
 
@@ -51,7 +52,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void interact()
+    public void interact()
     {
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
         if (infos.UseBlur)
@@ -199,6 +200,7 @@ public class Interact : MonoBehaviour
     {
         return objectInUse != null;
     }
+
 
     public bool setOption(int option)
     {
