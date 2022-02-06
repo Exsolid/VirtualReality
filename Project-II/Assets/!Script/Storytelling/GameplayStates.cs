@@ -11,5 +11,7 @@ public enum GameplayStates
     CHAPTER_ONE_CLUE_ONE = 3,
     CHAPTER_ONE_CLUE_TWO = 4,
     CHAPTER_ONE_SOLVED = 5,
-    CHAPTER_TWO = 6
+    CHAPTER_TWO = 6,
+    CHAPTER_TWO_TALK_ONE = 7,
+    CHAPTER_TWO_TALK_TWO = 8
 }
