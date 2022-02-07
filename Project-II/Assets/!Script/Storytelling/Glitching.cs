@@ -94,7 +94,7 @@ public class Glitching : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
-            yield return new WaitForSeconds(Random.Range(2, 4));
+        yield return new WaitForSeconds(Random.Range(2, 4));
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
         inter.MayInteract = false;
 

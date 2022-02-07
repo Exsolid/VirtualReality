@@ -24,4 +24,6 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private GameObject objectToShow;
     public bool RotateOnX { get { return rotateOnX; } set { rotateOnX = value; } }
     [SerializeField] private bool rotateOnX;
+    public Vector3 RepositionFocus { get { return repositionFocus; } set { repositionFocus = value; } }
+    [SerializeField] private Vector3 repositionFocus;
 }

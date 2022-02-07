@@ -76,7 +76,7 @@ public class Interact : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint != Vector3.zero) GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
-            else GetComponent<Movement>().rotateTo(objectInUse.transform.position);
+            else GetComponent<Movement>().rotateTo(objectInUse.transform.position + infos.RepositionFocus);
         }
         if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals(""))
         {
