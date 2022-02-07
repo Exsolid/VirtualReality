@@ -30,7 +30,7 @@ public class PauseGame : MonoBehaviour
 
     public void togglePause()
     {
-        if (!GetComponent<Interact>().isInteracting())
+        if (GetComponent<Interact>() == null || !GetComponent<Interact>().isInteracting())
         {
             isPaused = !isPaused;
             pauseMenu.enabled = isPaused;
