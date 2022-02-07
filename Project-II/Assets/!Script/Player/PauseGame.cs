@@ -19,6 +19,7 @@ public class PauseGame : MonoBehaviour
 
     void Start()
     {
+        mayPause = true;
     }
 
     // Update is called once per frame

@@ -9,7 +9,8 @@ public class Glitching : MonoBehaviour
 {
     [SerializeField] private VolumeProfile volumeProfile;
     [SerializeField] private string playerRoomSceneName;
-    [SerializeField] private Image fadeToBlack;
+    [SerializeField] private Canvas fadeCanvas;
+    private Image fadeToBlack;
     private bool onceFinal;
     private bool onceClueOne;
     // Start is called before the first frame update
@@ -41,13 +42,16 @@ public class Glitching : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         yield return new WaitForSeconds(Random.Range(2, 4));
+        fadeCanvas.enabled = true;
+        fadeToBlack = fadeCanvas.GetComponentInChildren<Image>();
+        fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 0);
         inter.MayInteract = false;
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
         Glitch glitch = volumeProfile.components.Find(component => component.name.Equals("Glitch")) as Glitch;
         float resetValue = glitch._NoiseIntensity.value;
         for (int i = 0; i < 5; i += 1)
         {
-            glitch._NoiseIntensity.value += 0.01f;
+            glitch._NoiseIntensity.value += 0.005f;
             yield return new WaitForSeconds(0.1f);
         }
         glitch._ScreenDivisions.value += 0.01f;
@@ -59,16 +63,22 @@ public class Glitching : MonoBehaviour
         glitch._ScreenDivisions.value += 0.01f;
         for (int i = 0; i < 5; i += 1)
         {
-            glitch._NoiseIntensity.value += 0.01f;
+            glitch._NoiseIntensity.value += 0.005f;
             yield return new WaitForSeconds(0.1f);
         }
         glitch._ScreenDivisions.value -= 0.01f;
         for (int i = 0; i < 5; i += 1)
         {
-            glitch._NoiseIntensity.value += 0.01f;
+            glitch._NoiseIntensity.value += 0.005f;
             yield return new WaitForSeconds(0.1f);
         }
-
+        float value = 0;
+        while (fadeToBlack.color.a < 1)
+        {
+            value += 0.01f;
+            fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, fadeToBlack.color.a + value);
+            yield return new WaitForSeconds(0.001f);
+        }
         fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1);
         glitch._ScreenDivisions.value -= 0.01f;
         glitch._NoiseIntensity.value = resetValue;
