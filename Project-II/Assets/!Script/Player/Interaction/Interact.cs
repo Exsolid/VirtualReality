@@ -151,7 +151,7 @@ public class Interact : MonoBehaviour
                 shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
                 shownDescriptor.enabled = true;
                 if (currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
-                if (currentText != null && currentText.ShowObject)
+                if (currentText != null && currentText.ShowObject && objectToShow == null)
                 {
                     objectToShow = Instantiate(infos.ObjectToShow);
                     objectToShow.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 0.4f;
