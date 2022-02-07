@@ -29,7 +29,7 @@ public class SliderSetting : MonoBehaviour
                 pref = PlayerPrefKeys.SOUND_VOLUME;
                 break;
         }
-        playerMovementToUpdate = FindObjectsOfType(typeof(Movement))[0] as Movement;
+        if(FindObjectsOfType(typeof(Movement)).Length != 0) playerMovementToUpdate = FindObjectsOfType(typeof(Movement))[0] as Movement;
         slider = gameObject.GetComponent<Slider>();
         if (PlayerPrefs.HasKey(pref)) slider.value = PlayerPrefs.GetFloat(pref) * slider.maxValue;
         slider.onValueChanged.AddListener(delegate
