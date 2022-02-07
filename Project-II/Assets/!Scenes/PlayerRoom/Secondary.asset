@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1a15665435170448512241007e0b68, type: 3}
   m_Name: Glitch
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   _NoiseIntensity:
     m_OverrideState: 1
@@ -951,7 +951,7 @@ MonoBehaviour:
     max: 4
   _ScreenDivisions:
     m_OverrideState: 1
-    m_Value: 0.73
+    m_Value: 1.23
     min: 0
     max: 5
   _IndentionAmount:
@@ -961,17 +961,17 @@ MonoBehaviour:
     max: 1
   _IndentionIntensityLeft:
     m_OverrideState: 1
-    m_Value: 0.071
+    m_Value: 0.053
     min: 0
     max: 1
   _IndentionIntensityRight:
     m_OverrideState: 1
-    m_Value: 0.087
+    m_Value: 0.062
     min: 0
     max: 1
   _StaticOpacity:
     m_OverrideState: 1
-    m_Value: 0.082
+    m_Value: 0.024
     min: 0
     max: 1
   _StaticDivisionsY:
@@ -991,7 +991,7 @@ MonoBehaviour:
     max: 1
   _StaticTimed:
     m_OverrideState: 1
-    m_Value: 0.31
+    m_Value: 0.089
     min: 0
     max: 1
   _BlackWhite:
@@ -1006,7 +1006,7 @@ MonoBehaviour:
     max: 1
   _DisplacementIntensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.054
     min: 0
     max: 1
   _DisplacementTexture:

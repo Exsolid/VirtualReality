@@ -30,9 +30,17 @@ public class Interact : MonoBehaviour
     private DialogTreeNode currentText;
 
     private int selectedOption;
+
+    public bool MayInteract { get { return mayInteract; } set { mayInteract = value; } }
+    private bool mayInteract;
+    private void Start()
+    {
+        mayInteract = true;
+    }
+
     void Update()
     {
-        if (objectInUse != null && !GetComponent<PauseGame>().IsPaused)
+        if (objectInUse != null && !GetComponent<PauseGame>().IsPaused && mayInteract)
         {
             if (input.actions[returnActionName].triggered || input.actions[interactActionName].triggered)
             {
