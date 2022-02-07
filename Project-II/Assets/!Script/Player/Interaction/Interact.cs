@@ -103,6 +103,7 @@ public class Interact : MonoBehaviour
                 objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
                 objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
             }
+            GetComponent<Crosshair>().hideCrosshair();
         }
         if (infos.Moveable)
         {
@@ -169,6 +170,7 @@ public class Interact : MonoBehaviour
             }
             else
             {
+                GetComponent<Crosshair>().showCrosshair();
                 shownText.GetComponentInChildren<Text>().text = "";
                 shownText.GetComponentInChildren<Image>().enabled = false;
                 shownDescriptor.GetComponentInChildren<Text>().text = "";

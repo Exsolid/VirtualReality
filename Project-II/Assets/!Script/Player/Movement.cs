@@ -29,7 +29,6 @@ public class Movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivityUpdated = mouseSensitivity * PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
         else mouseSensitivityUpdated = mouseSensitivity;
-        Debug.Log("beep"+ PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY));
     }
 
     // Update is called once per frame
@@ -67,7 +66,6 @@ public class Movement : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefKeys.MOUSE_SENSITIVITY)) mouseSensitivityUpdated = mouseSensitivity * PlayerPrefs.GetFloat(PlayerPrefKeys.MOUSE_SENSITIVITY);
         else mouseSensitivityUpdated = mouseSensitivity;
-        Debug.Log("boop" + mouseSensitivityUpdated);
     }
 
     public void rotateTo(Vector3 position)

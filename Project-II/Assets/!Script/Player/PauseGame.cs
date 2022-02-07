@@ -17,9 +17,12 @@ public class PauseGame : MonoBehaviour
     private bool mayUnlockRotation;
     private bool mayUnlockPosition;
 
+    private Crosshair cross;
+
     void Start()
     {
         mayPause = true;
+        cross = GetComponent<Crosshair>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class PauseGame : MonoBehaviour
             pauseMenu.enabled = isPaused;
             if (isPaused)
             {
+                if(cross != null) cross.hideCrosshair();
                 mayUnlockRotation = GetComponent<Movement>().LockRotation;
                 mayUnlockPosition = GetComponent<Movement>().LockPosition;
                 GetComponent<Movement>().LockRotation = true;
@@ -48,6 +52,7 @@ public class PauseGame : MonoBehaviour
             }
             else
             {
+                if (cross != null) cross.showCrosshair();
                 mainPause.SetAsLastSibling();
                 GetComponent<Movement>().LockRotation = mayUnlockRotation;
                 GetComponent<Movement>().LockPosition = mayUnlockPosition;
