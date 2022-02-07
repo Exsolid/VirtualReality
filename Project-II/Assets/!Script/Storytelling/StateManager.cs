@@ -19,14 +19,8 @@ public class StateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // if (PlayerPrefs.HasKey(PlayerPrefKeys.GAMEPLAY_STATE)) currentState = PlayerPrefs.GetInt(PlayerPrefKeys.GAMEPLAY_STATE);
-        // else currentState = GameplayStates.INTRO;
-        currentState = GameplayStates.CHAPTER_ONE_CLUE_ONE;
-    }
-
-    public void setState(GameplayStates newState)
-    {
-        currentState = newState;
+        if (PlayerPrefs.HasKey(PlayerPrefKeys.GAMEPLAY_STATE)) currentState = (GameplayStates)PlayerPrefs.GetInt(PlayerPrefKeys.GAMEPLAY_STATE);
+        else currentState = GameplayStates.INTRO;
     }
 
     public StoryInfos getCurrentInfos(StoryObjects obj)
@@ -580,5 +574,11 @@ public class StateManager : MonoBehaviour
         }
         infos.Root = root;
         return infos;
+    }
+
+    public void updateCurrentState(GameplayStates newState)
+    {
+        currentState = newState;
+        PlayerPrefs.SetInt(PlayerPrefKeys.GAMEPLAY_STATE, (int)currentState);
     }
 }

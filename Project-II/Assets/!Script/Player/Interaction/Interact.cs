@@ -95,7 +95,7 @@ public class Interact : MonoBehaviour
 
             shownDescriptor.GetComponentInChildren<Text>().text = currentText == null ? infos.Descriptor : currentText.Descriptor;
             shownDescriptor.enabled = true;
-            if (currentText != null && currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
+            if (currentText != null && currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
             if (currentText != null && currentText.ShowObject)
             {
                 objectToShow = Instantiate(infos.ObjectToShow);
@@ -150,7 +150,7 @@ public class Interact : MonoBehaviour
 
                 shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
                 shownDescriptor.enabled = true;
-                if (currentText.NextState != 0) GetComponent<StateManager>().setState(currentText.NextState);
+                if (currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
                 if (currentText != null && currentText.ShowObject && objectToShow == null)
                 {
                     objectToShow = Instantiate(infos.ObjectToShow);

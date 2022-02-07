@@ -8,6 +8,7 @@ public class GotoScene : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] string sceneName;
     [SerializeField] bool toPrevScene;
+    [SerializeField] bool resetStory;
     [SerializeField] RectTransform hideTo;
 
     public void OnPointerClick(PointerEventData eventData)
@@ -21,6 +22,7 @@ public class GotoScene : MonoBehaviour, IPointerClickHandler
         {
             sceneName = PlayerPrefs.GetString(PlayerPrefKeys.PREV_SCENE);
         }
+        if(resetStory) PlayerPrefs.SetInt(PlayerPrefKeys.GAMEPLAY_STATE, (int)GameplayStates.INTRO);
         PlayerPrefs.SetString(PlayerPrefKeys.PREV_SCENE, SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(sceneName);
     }
