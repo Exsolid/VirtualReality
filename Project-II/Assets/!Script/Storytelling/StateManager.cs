@@ -581,29 +581,4 @@ public class StateManager : MonoBehaviour
         infos.Root = root;
         return infos;
     }
-    private StoryInfos temp(StoryInfos infos)
-    {
-        DialogTreeNode root = null;
-        DialogTreeNode temp;
-        Vector3 rotateTo = Vector3.zero;
-        switch (currentState)
-        {
-            case GameplayStates.INTRO:
-                
-                break;
-
-            case GameplayStates.CHAPTER_ONE:
-            case GameplayStates.CHAPTER_ONE_UNSOLVED:
-
-                break;
-        }
-        if (rotateTo == Vector3.zero)
-        {
-            rotateTo = camilla.transform.position;
-            rotateTo.y += 1.25f;
-            infos.TalkingPoint = rotateTo;
-        }
-        infos.Root = root;
-        return infos;
-    }
 }

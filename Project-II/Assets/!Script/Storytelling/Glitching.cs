@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +9,12 @@ public class Glitching : MonoBehaviour
 {
     [SerializeField] private VolumeProfile volumeProfile;
     [SerializeField] private string playerRoomSceneName;
+    [SerializeField] private Image fadeToBlack;
     private bool onceFinal;
     private bool onceClueOne;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class Glitching : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
+        yield return new WaitForSeconds(Random.Range(2, 4));
         inter.MayInteract = false;
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
         Glitch glitch = volumeProfile.components.Find(component => component.name.Equals("Glitch")) as Glitch;
@@ -66,6 +68,8 @@ public class Glitching : MonoBehaviour
             glitch._NoiseIntensity.value += 0.01f;
             yield return new WaitForSeconds(0.1f);
         }
+
+        fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 1);
         glitch._ScreenDivisions.value -= 0.01f;
         glitch._NoiseIntensity.value = resetValue;
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = false;
@@ -78,8 +82,9 @@ public class Glitching : MonoBehaviour
         Glitch glitch = volumeProfile.components.Find(component => component.name.Equals("Glitch")) as Glitch;
         while (inter.isInteracting())
         {
-            yield return new WaitForSeconds(Random.Range(1,2.5f));
+            yield return new WaitForSeconds(1f);
         }
+            yield return new WaitForSeconds(Random.Range(2, 4));
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
         inter.MayInteract = false;
 

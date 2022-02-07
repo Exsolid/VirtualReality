@@ -11,6 +11,8 @@ public class PauseGame : MonoBehaviour
     [SerializeField] RectTransform mainPause;
     private bool isPaused;
     public bool IsPaused { get { return isPaused; } set { isPaused = value;  } }
+    private bool mayPause;
+    public bool MayPause { get { return mayPause; } set { mayPause = value; } }
 
     private bool mayUnlockRotation;
     private bool mayUnlockPosition;
@@ -30,7 +32,7 @@ public class PauseGame : MonoBehaviour
 
     public void togglePause()
     {
-        if (GetComponent<Interact>() == null || !GetComponent<Interact>().isInteracting())
+        if (mayPause &&(GetComponent<Interact>() == null || !GetComponent<Interact>().isInteracting()))
         {
             isPaused = !isPaused;
             pauseMenu.enabled = isPaused;

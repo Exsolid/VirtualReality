@@ -35,7 +35,6 @@ public class Interact : MonoBehaviour
     private bool mayInteract;
     private void Start()
     {
-        mayInteract = true;
     }
 
     void Update()
@@ -49,7 +48,7 @@ public class Interact : MonoBehaviour
             return;
         }
 
-        if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused)
+        if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused && mayInteract)
         {
             Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.6f, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
             if (hitInteractable.transform != null && hitInteractable.collider.gameObject.GetComponent<InteractableInfos>().InteractableAfter <= GetComponent<StateManager>().CurrentState)
