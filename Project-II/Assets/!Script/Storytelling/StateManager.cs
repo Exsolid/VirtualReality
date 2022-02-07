@@ -21,7 +21,7 @@ public class StateManager : MonoBehaviour
     {
         // if (PlayerPrefs.HasKey(PlayerPrefKeys.GAMEPLAY_STATE)) currentState = PlayerPrefs.GetInt(PlayerPrefKeys.GAMEPLAY_STATE);
         // else currentState = GameplayStates.INTRO;
-        currentState = GameplayStates.INTRO;
+        currentState = GameplayStates.CHAPTER_ONE_CLUE_ONE;
     }
 
     public void setState(GameplayStates newState)
