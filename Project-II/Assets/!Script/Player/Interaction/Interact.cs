@@ -39,7 +39,7 @@ public class Interact : MonoBehaviour
 
     void Update()
     {
-        if (objectInUse != null && !GetComponent<PauseGame>().IsPaused && mayInteract)
+        if (objectInUse != null && !GetComponent<PauseGame>().IsPaused)
         {
             if (input.actions[returnActionName].triggered || input.actions[interactActionName].triggered)
             {
@@ -48,7 +48,7 @@ public class Interact : MonoBehaviour
             return;
         }
 
-        if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused && mayInteract)
+        if (input.actions[interactActionName].triggered && !GetComponent<PauseGame>().IsPaused)
         {
             Physics.Raycast(Camera.main.transform.position + Camera.main.transform.forward * 0.6f, Camera.main.transform.forward, out hitInteractable, 2, 11 << 11);
             if (hitInteractable.transform != null && hitInteractable.collider.gameObject.GetComponent<InteractableInfos>().InteractableAfter <= GetComponent<StateManager>().CurrentState)
@@ -61,6 +61,7 @@ public class Interact : MonoBehaviour
 
     public void interact()
     {
+        if (!mayInteract) return;
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
         if (infos.UseBlur)
         {
@@ -119,14 +120,30 @@ public class Interact : MonoBehaviour
 
     public void resetInteraction()
     {
-        if (objectInUse != null)
+        if (objectInUse != null && mayInteract)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
-            if (currentText != null && currentText.Options.Count == 0 && currentText.ChildNodes.Count == 1) currentText = currentText.ChildNodes[0];
-            else if (currentText != null && currentText.Options.Count > 0)
+            if (currentText != null && currentText.ChildNodes.Count > 0 && currentText.Options.Count == 0 && currentText.ChildNodes[0].ShownText != "") currentText = currentText.ChildNodes[0];
+            else if (currentText != null && selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
+            else currentText = null;
+            for (int i = 0; i < options.Count; i++)
             {
+                options[i].enabled = false;
+                options[i].GetComponentInChildren<Text>().text = "";
+            }
+            if (currentText != null)
+            {
+                selectedOption = -1;
+                if (currentText != null)
+                {
+                    for (int i = 0; i < currentText.Options.Count; i++)
+                    {
+                        options[i].enabled = true;
+                        options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
+                    }
+                }
                 if (selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
-                else if(selectedOption != -1) currentText = null;
+                else if (selectedOption != -1) currentText = null;
                 selectedOption = -1;
                 for (int i = 0; i < options.Count; i++)
                 {
@@ -141,10 +158,6 @@ public class Interact : MonoBehaviour
                         options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
                     }
                 }
-            }
-            else currentText = null;
-            if (currentText != null)
-            {
                 shownText.GetComponentInChildren<Text>().text = currentText.ShownText;
                 shownText.enabled = true;
 

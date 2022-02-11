@@ -9,7 +9,8 @@ public class SelectOption : MonoBehaviour, IPointerClickHandler
         One,
         Two,
         Three,
-        Four
+        Four,
+        Five
     };
     [SerializeField] private Option option;
     public void OnPointerClick(PointerEventData eventData)
@@ -30,6 +31,10 @@ public class SelectOption : MonoBehaviour, IPointerClickHandler
                 break;
             case Option.Four:
                 if (FindObjectOfType<Interact>().setOption(3))
+                    FindObjectOfType<Interact>().resetInteraction();
+                break;
+            case Option.Five:
+                if (FindObjectOfType<Interact>().setOption(4))
                     FindObjectOfType<Interact>().resetInteraction();
                 break;
         }

@@ -99,30 +99,34 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("Have you perhaps seen the key to the living room?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
                 root.ChildNodes.Add(new DialogTreeNode("She meant the world to me and was the spitting image of my late wife...", "Edgar"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and everyone loved her.", "Edgar"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.Options.Add("Have you perhaps seen the key to the living room?");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
-                temp.ChildNodes.Add(new DialogTreeNode("Not recently, is it locked again?", "Edgar"));
-                temp = temp.ChildNodes[0];
+                root.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and everyone loved her.", "Edgar"));
+                root.ChildNodes.Add(new DialogTreeNode("Not recently, is it locked again?", "Edgar"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
                 break;
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
                 root.ChildNodes.Add(new DialogTreeNode("She meant the world to me and was the spitting image of my late wife...", "Edgar"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and everyone loved her.", "Edgar"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Edgar"));
-                temp = temp.ChildNodes[0];
+                root.ChildNodes.Add(new DialogTreeNode("No, never. She was kind and gentle and everyone loved her.", "Edgar"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
                 break;
         }
         if(rotateTo == Vector3.zero)
@@ -172,31 +176,36 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("Yes? Do you need anything?", "Margaret");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("Have you perhaps seen the key to the living room?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
                 root.ChildNodes.Add(new DialogTreeNode("She might not have been my own daughter, but I loved her just the same.", "Margaret"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Oh, just the usual banter between siblings. But I assure you both of my daughters loved her like a sister.", "Margaret"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.Options.Add("Have you perhaps seen the key to the living room?");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
-                temp.ChildNodes.Add(new DialogTreeNode("No, I have not, I'm sorry.", "Margaret"));
-                temp = temp.ChildNodes[0];
+                root.ChildNodes.Add(new DialogTreeNode("Oh, just the usual banter between siblings. But I assure you both of my daughters loved her like a sister.", "Margaret"));
+                root.ChildNodes.Add(new DialogTreeNode("No, I have not, I'm sorry.", "Margaret"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
                 break;
 
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("Yes? Do you need anything?", "Margaret");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
                 root.ChildNodes.Add(new DialogTreeNode("She might not have been my own daughter, but I loved her just the same.", "Margaret"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Oh, just the usual banter between siblings. But I assure you both of my daughters loved her like a sister.", "Margaret"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Margaret"));
-                temp = temp.ChildNodes[0];
+                root.ChildNodes.Add(new DialogTreeNode("Oh, just the usual banter between siblings. But I assure you both of my daughters loved her like a sister.", "Margaret"));
+                
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root); 
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root); 
                 break;
         }
         infos.Root = root;
@@ -226,36 +235,43 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("Yes??", "Camilla");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("Have you perhaps seen the key to the living room?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson", "Camilla"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Camilla"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.Options.Add("Have you perhaps seen the key to the living room?");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
-                temp.ChildNodes.Add(new DialogTreeNode("No, I have not. Sometimes things just go missing in this house, it's really weird.", "Camilla"));
-                temp = temp.ChildNodes[0];
+                root.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("No, I have not. Sometimes things just go missing in this house, it's really weird.", "Camilla"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[4];
+                temp.ChildNodes.Add(root);
                 break;
 
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("Yes??", "Camilla");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson", "Camilla"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Camilla"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
                 break;
         }
         if (rotateTo == Vector3.zero)
@@ -280,34 +296,63 @@ public class StateManager : MonoBehaviour
 
             case GameplayStates.CHAPTER_ONE:
                 root = new DialogTreeNode("Hello there, you must be the detective Edgar has been talking about! That's so exciting! Of course, I will help however I can.", "Cassilda");
+
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("Have you perhaps seen the key to the living room?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
                 root.ChildNodes.Add(new DialogTreeNode("Oh, where are my manners? I am Cassilda Thompson, Margaret’s daughter. Edgar is my stepfather. The grumpy one over there is my twin sister.", "Cassilda"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.Options.Add("Have you perhaps seen the key to the living room?");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
-                temp.ChildNodes.Add(new DialogTreeNode("Well, I might have an idea where it could be.... but I'm only going to tell you if you help me first.", "Cassilda"));
-                temp = temp.ChildNodes[1];
+                root.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
+
+                root.ChildNodes.Add(new DialogTreeNode("Well, I might have an idea where it could be.... but I'm only going to tell you if you help me first.", "Cassilda"));
+                temp = root.ChildNodes[4];
                 temp.ChildNodes.Add(new DialogTreeNode("You see, I have invited some friends from Cornwall for tea, but I can't seem to remember the difference between Cornish Cream Tea and Devonshire Cream Tea.", "Cassilda"));
                 temp = temp.ChildNodes[0];
                 temp.ChildNodes.Add(new DialogTreeNode("Could you please find out the difference for me? It would be very embarrassing for me to get it wrong.", "Cassilda"));
-                temp = temp.ChildNodes[0];
                 temp.NextState = GameplayStates.CHAPTER_ONE_UNSOLVED;
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
                 root = new DialogTreeNode("So? Did you find the answer?", "Cassilda");
+
                 root.Options.Add("No, I have not.");
+                root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("Have you perhaps seen the key to the living room?");
                 root.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("Oh, where are my manners? I am Cassilda Thompson, Margaret’s daughter. Edgar is my stepfather. The grumpy one over there is my twin sister.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
+
+                root.ChildNodes.Add(new DialogTreeNode("Well, I might have an idea where it could be.... but I'm only going to tell you if you help me first.", "Cassilda"));
+                temp = root.ChildNodes[4];
+                temp.ChildNodes.Add(new DialogTreeNode("You see, I have invited some friends from Cornwall for tea, but I can't seem to remember the difference between Cornish Cream Tea and Devonshire Cream Tea.", "Cassilda"));
+                temp = temp.ChildNodes[0];
+                temp.ChildNodes.Add(new DialogTreeNode("Could you please find out the difference for me? It would be very embarrassing for me to get it wrong.", "Cassilda"));
+                temp = temp.ChildNodes[0];
+                temp.ChildNodes.Add(root);
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
                 break;
 
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_SOLVED:
                 root = new DialogTreeNode("So? Did you find the answer?", "Cassilda");
                 root.Options.Add("Yes, there is no difference.");
                 root.Options.Add("In Cornwall you add the jam first, then the cream. In Devon it's the other way around.");
@@ -321,20 +366,12 @@ public class StateManager : MonoBehaviour
                 temp.ChildNodes.Add(new DialogTreeNode("I think I remember seeing the key somewhere around there. Good luck!", "Cassilda"));
                 temp.NextState = GameplayStates.CHAPTER_ONE_SOLVED;
                 break;
-            case GameplayStates.CHAPTER_ONE_SOLVED:
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
-                root = new DialogTreeNode("Hello there, you must be the detective Edgar has been talking about! That's so exciting! Of course, I will help however I can.", "Cassilda");
-                root.Options.Add("Who are you?");
-                root.ChildNodes.Add(new DialogTreeNode("Oh, where are my manners? I am Cassilda Thompson, Margaret’s daughter. Edgar is my stepfather. The grumpy one over there is my twin sister.", "Cassilda"));
+                root = new DialogTreeNode("Hello there, how can I help you?", "Cassilda");
+                root.Options.Add("Did you hide the key in the vase?");
+                root.ChildNodes.Add(new DialogTreeNode("I may or may not have done that to test your capabilities.", "Cassilda"));
                 temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
                 temp.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
 
                 break;
@@ -362,7 +399,6 @@ public class StateManager : MonoBehaviour
             case GameplayStates.CHAPTER_ONE:
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
-                break;
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
                 root = new DialogTreeNode("The page seems to have been ripped out of the book about tea.", "A Ripped Page");
@@ -400,9 +436,7 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case GameplayStates.INTRO:
-
                 break;
-
             case GameplayStates.CHAPTER_ONE:
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
@@ -482,34 +516,44 @@ public class StateManager : MonoBehaviour
                 break;
             case GameplayStates.CHAPTER_TWO:
                 root = new DialogTreeNode("Hello. How can I help you?", "Olivia");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Olivia"));
                 root.ChildNodes.Add(new DialogTreeNode("My name is Olivia Brown. I am Richard’s fiancée and I just moved in here not too long ago.", "Olivia"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("It could have been better. I' not from the upper class and I guess she thought that I'm not good enough for her brother.", "Olivia"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("We've had our disagreements, but she is still my fiancés little sister.", "Olivia"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Olivia"));
-                temp.NextState = GameplayStates.CHAPTER_TWO_TALK_ONE;
+                root.ChildNodes.Add(new DialogTreeNode("It could have been better. I' not from the upper class and I guess she thought that I'm not good enough for her brother.", "Olivia"));
+                root.ChildNodes.Add(new DialogTreeNode("We've had our disagreements, but she is still my fiancés little sister.", "Olivia"));
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
+
+                root.NextState = GameplayStates.CHAPTER_TWO_TALK_ONE;
                 oliviaFirst = true;
                 break;
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("Hello. How can I help you?", "Olivia");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Olivia"));
                 root.ChildNodes.Add(new DialogTreeNode("My name is Olivia Brown. I am Richard’s fiancée and I just moved in here not too long ago.", "Olivia"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("It could have been better. I' not from the upper class and I guess she thought that I'm not good enough for her brother.", "Olivia"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("We've had our disagreements, but she is still my fiancés little sister.", "Olivia"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Olivia"));
-                if(!oliviaFirst) temp.NextState = GameplayStates.CHAPTER_TWO_TALK_TWO;
+                root.ChildNodes.Add(new DialogTreeNode("It could have been better. I' not from the upper class and I guess she thought that I'm not good enough for her brother.", "Olivia"));
+                root.ChildNodes.Add(new DialogTreeNode("We've had our disagreements, but she is still my fiancés little sister.", "Olivia"));
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
+
+                if (!oliviaFirst) root.NextState = GameplayStates.CHAPTER_TWO_TALK_TWO;
                 break;
             case GameplayStates.CHAPTER_TWO_TALK_TWO:
                 break;
@@ -534,33 +578,44 @@ public class StateManager : MonoBehaviour
                 break;
             case GameplayStates.CHAPTER_TWO:
                 root = new DialogTreeNode("Ah, Mr. Detective! So good to see you again!", "Richard");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Richard"));
                 root.ChildNodes.Add(new DialogTreeNode("Don't you remember me? I am Richard Evans, Edgar’s son. Although it has been some time.", "Richard"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("Lizzie was my little sister and I already miss her terribly.", "Richard"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Well, of course we argued a lot. She was my sister. Isn't that normal for siblings? That does not mean I did not love her.", "Richard"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Richard"));
-                temp.NextState = GameplayStates.CHAPTER_TWO_TALK_ONE;
+                root.ChildNodes.Add(new DialogTreeNode("Lizzie was my little sister and I already miss her terribly.", "Richard"));
+                root.ChildNodes.Add(new DialogTreeNode("Well, of course we argued a lot. She was my sister. Isn't that normal for siblings? That does not mean I did not love her.", "Richard"));
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
+
+                root.NextState = GameplayStates.CHAPTER_TWO_TALK_ONE;
+
                 richardFirst = true;
                 break;
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("Ah, Mr. Detective! So good to see you again!", "Richard");
+                root.Options.Add("I don't have any more questions at the moment.");
                 root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.ChildNodes.Add(new DialogTreeNode("", "Richard"));
                 root.ChildNodes.Add(new DialogTreeNode("Don't you remember me? I am Richard Evans, Edgar’s son. Although it has been some time.", "Richard"));
-                temp = root.ChildNodes[0];
-                temp.Options.Add("How was your relationship with Elizabeth?");
-                temp.ChildNodes.Add(new DialogTreeNode("Lizzie was my little sister and I already miss her terribly.", "Richard"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("Did Elizabeth ever argue with anyone?");
-                temp.ChildNodes.Add(new DialogTreeNode("Well, of course we argued a lot. She was my sister. Isn't that normal for siblings? That does not mean I did not love her.", "Richard"));
-                temp = temp.ChildNodes[0];
-                temp.Options.Add("I don't have any more questions at the moment.");
-                temp.ChildNodes.Add(new DialogTreeNode("", "Richard"));
+                root.ChildNodes.Add(new DialogTreeNode("Lizzie was my little sister and I already miss her terribly.", "Richard"));
+                root.ChildNodes.Add(new DialogTreeNode("Well, of course we argued a lot. She was my sister. Isn't that normal for siblings? That does not mean I did not love her.", "Richard"));
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[3];
+                temp.ChildNodes.Add(root);
+
                 if (!richardFirst) temp.NextState = GameplayStates.CHAPTER_TWO_TALK_TWO;
                 break;
             case GameplayStates.CHAPTER_TWO_TALK_TWO:

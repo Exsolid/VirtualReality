@@ -27,7 +27,7 @@ public class Glitching : MonoBehaviour
             onceFinal = true;
         }
 
-        if (GameplayStates.CHAPTER_ONE_CLUE_ONE == GetComponent<StateManager>().CurrentState && !onceClueOne)
+        if (GameplayStates.CHAPTER_ONE_CLUE_TWO == GetComponent<StateManager>().CurrentState && !onceClueOne)
         {
             StartCoroutine(smallGlitch());
             onceClueOne = true;
@@ -41,11 +41,11 @@ public class Glitching : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
+        inter.MayInteract = false;
         yield return new WaitForSeconds(Random.Range(2, 4));
         fadeCanvas.enabled = true;
         fadeToBlack = fadeCanvas.GetComponentInChildren<Image>();
         fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 0);
-        inter.MayInteract = false;
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
         Glitch glitch = volumeProfile.components.Find(component => component.name.Equals("Glitch")) as Glitch;
         float resetValue = glitch._NoiseIntensity.value;
@@ -94,9 +94,9 @@ public class Glitching : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
+        inter.MayInteract = false;
         yield return new WaitForSeconds(Random.Range(2, 4));
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
-        inter.MayInteract = false;
 
         float screenDiv = glitch._ScreenDivisions.value;
         float indention = glitch._IndentionAmount.value;
@@ -111,7 +111,7 @@ public class Glitching : MonoBehaviour
         glitch._IndentionIntensityRight.value = 0;
         glitch._IndentionIntensityLeft.value = 0;
 
-        for (int i = 0; i < 5; i += 1)
+        for (int i = 0; i < 7; i += 1)
         {
             glitch._DisplacementIntensity.value += 0.02f;
             glitch._NoiseIntensity.value += 0.003f;
