@@ -2214,7 +2214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ff0970d1c6fc5e4daa087d14e42fa67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.691001
+      value: -13.6816
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ff0970d1c6fc5e4daa087d14e42fa67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7044,6 +7044,10 @@ PrefabInstance:
     - target: {fileID: 4410792319835124928, guid: 081fe4da2a394ef4f8c7febb0897c5de, type: 3}
       propertyPath: m_Name
       value: Keyboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410792319835124928, guid: 081fe4da2a394ef4f8c7febb0897c5de, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4410792319835220192, guid: 081fe4da2a394ef4f8c7febb0897c5de, type: 3}
       propertyPath: m_RootOrder
