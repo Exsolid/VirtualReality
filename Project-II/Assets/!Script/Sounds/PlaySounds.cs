@@ -15,14 +15,14 @@ public class PlaySounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         speaker = AudioBuddy.Play(nameOfSound, volumeMulti, gameObject);
         timer = AudioBuddy.FindSoundByName(nameOfSound).GetDuration();
     }
 
     private void Update()
     {
-        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         if (speaker != null && speaker.SourcePlayer.volume != volumeMulti)
         {
             speaker.updateVolume(volumeMulti);

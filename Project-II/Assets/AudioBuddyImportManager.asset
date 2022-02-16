@@ -17,8 +17,6 @@ MonoBehaviour:
   _abObjectCollection:
   - {fileID: 11400000, guid: b3df2f3800949394790148009bd2df4e, type: 2}
   - {fileID: 11400000, guid: 19c67498aeeffe641848bdeb06523137, type: 2}
-  - {fileID: 11400000, guid: 4c3a6366b8fe6ce44a1fd8bf0afa18d6, type: 2}
-  - {fileID: 11400000, guid: 6c3f99586c4bb264fb42d2a8d3f37446, type: 2}
   - {fileID: 11400000, guid: 7c414ea735f6cca4ba61825d710898d1, type: 2}
   - {fileID: 11400000, guid: 0da63d6afeeaa8346b2fa774c279faed, type: 2}
   - {fileID: 11400000, guid: 71652feefcd5b2a4587a4c5ec08bc21b, type: 2}
@@ -45,8 +43,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ad51b2d6d431ab46b00d9524e16d50d, type: 2}
   - {fileID: 11400000, guid: 35f1cc793c2a46c4fb25030423e27e93, type: 2}
   - {fileID: 11400000, guid: a154bb32b4f912e4690911b274753556, type: 2}
-  - {fileID: 11400000, guid: c8cbb685390665347a6de181fc3269f6, type: 2}
-  - {fileID: 11400000, guid: 84e69661a2a5e094780adad92575cb93, type: 2}
   - {fileID: 11400000, guid: 213b6e6a88d4cf743b1e36bf7ebe920e, type: 2}
   - {fileID: 11400000, guid: 210216967445f644eaa2d9c22c59fc35, type: 2}
   - {fileID: 11400000, guid: 658a4f29110dcb946a97fa15703b60f9, type: 2}
@@ -64,5 +60,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a61082be297898b4888f1b12577553d2, type: 2}
   - {fileID: 11400000, guid: 7ac864efc435bc946b636135f5b80a23, type: 2}
   - {fileID: 11400000, guid: 8ecfa9a2e1c2793499c26fd645685e21, type: 2}
-  Linked: 1
+  Linked: 0
   CreateABOjectsOnClipImport: 1

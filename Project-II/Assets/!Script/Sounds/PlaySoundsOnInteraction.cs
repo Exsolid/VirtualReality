@@ -14,7 +14,7 @@ public class PlaySoundsOnInteraction : MonoBehaviour
 
     private void Update()
     {
-        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         if (speaker != null && speaker.SourcePlayer.volume != volumeMulti)
         {
             speaker.updateVolume(volumeMulti);
@@ -27,7 +27,7 @@ public class PlaySoundsOnInteraction : MonoBehaviour
         if(timer <= 0)
         {
             rand = Random.Range(0, nameOfSounds.Count);
-            float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+            float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
             speaker = AudioBuddy.Play(nameOfSounds[rand], volumeMulti, gameObject);
             timer = AudioBuddy.FindSoundByName(nameOfSounds[rand]).GetDuration();
         }

@@ -18,7 +18,7 @@ public class PlaySoundQueue : MonoBehaviour
     void Start()
     {
         current = Random.Range(0,nameOfSound.Count);
-        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         speaker = AudioBuddy.Play(nameOfSound[current], volumeMulti, gameObject);
         timer = AudioBuddy.FindSoundByName(nameOfSound[current]).GetDuration();
     }
@@ -26,7 +26,7 @@ public class PlaySoundQueue : MonoBehaviour
     private void Update()
     {
         speaker.transform.position = gameObject.transform.position;
-        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME);
+        float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         if (speaker != null && speaker.SourcePlayer.volume != volumeMulti/2)
         {
             speaker.updateVolume(volumeMulti/2);
