@@ -44,6 +44,7 @@ public class SliderSetting : MonoBehaviour
         if (timer > 0) timer -= Time.deltaTime;
         if (timer < 0 && timer != -10)
         {
+            Debug.Log("Changed "+ pref+ " to " + slider.value / slider.maxValue);
             PlayerPrefs.SetFloat(pref, slider.value / slider.maxValue);
             if (playerMovementToUpdate != null) playerMovementToUpdate.updateMouseSense();
             timer = -10;

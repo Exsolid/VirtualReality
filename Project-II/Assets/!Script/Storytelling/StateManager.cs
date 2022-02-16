@@ -405,6 +405,7 @@ public class StateManager : MonoBehaviour
                 root.Options.Add("Inspect page");
                 root.ChildNodes.Add(new DialogTreeNode("Is this what Cassilda wanted to know?", "A Ripped Page"));
                 temp = root.ChildNodes[0];
+                temp.SoundToPlay = "vrh_sfx_papier_blättern";
                 temp.ShowObject = true;
 
                 temp.Options.Add("Put page back");
@@ -418,6 +419,7 @@ public class StateManager : MonoBehaviour
                 root.Options.Add("Inspect page");
                 root.ChildNodes.Add(new DialogTreeNode("It is about cream tea.", "A Ripped Page"));
                 temp = root.ChildNodes[0];
+                temp.SoundToPlay = "vrh_sfx_papier_blättern";
                 temp.ShowObject = true;
 
                 temp.Options.Add("Put page back");
@@ -444,6 +446,7 @@ public class StateManager : MonoBehaviour
                 root.Options.Add("Read book");
                 root.ChildNodes.Add(new DialogTreeNode("The information I am looking for has been ripped out.", "A Book"));
                 temp = root.ChildNodes[0];
+                temp.SoundToPlay = "vrh_sfx_papier_blättern";
                 temp.ShowObject = true;
 
                 temp.Options.Add("Close book");
@@ -459,6 +462,7 @@ public class StateManager : MonoBehaviour
                 root.Options.Add("Read book");
                 root.ChildNodes.Add(new DialogTreeNode("The information I have been looking for has been ripped out.", "A Book"));
                 temp = root.ChildNodes[0];
+                temp.SoundToPlay = "vrh_sfx_papier_blättern";
                 temp.ShowObject = true;
 
                 temp.Options.Add("Close book");
@@ -481,7 +485,7 @@ public class StateManager : MonoBehaviour
                 root.ChildNodes.Add(new DialogTreeNode("You found a key!", "A Vase"));
                 temp = root.ChildNodes[0];
                 temp.ShowObject = true;
-
+                temp.SoundToPlay = "vrh_sfx_schlüssel_1";
                 temp.Options.Add("Go away");
                 temp.ChildNodes.Add(new DialogTreeNode("", "A Vase"));
                 temp.NextState = GameplayStates.CHAPTER_TWO;

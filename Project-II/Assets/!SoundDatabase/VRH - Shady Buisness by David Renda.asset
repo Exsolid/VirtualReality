@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbf709625875dc4fad66bd52f19cb20, type: 3}
   m_Name: VRH - Shady Buisness by David Renda
   m_EditorClassIdentifier: 
-  Volume: 1
+  Volume: 0
   Pitch: 1
   _file: {fileID: 8300000, guid: 7309cd0dc135cd9468c0103563ac87a1, type: 3}
   IsLoop: 0

@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using AudioBuddyTool;
 
 public class Interact : MonoBehaviour
 {
@@ -63,6 +64,10 @@ public class Interact : MonoBehaviour
     {
         if (!mayInteract) return;
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
+        if(objectInUse.GetComponent<PlaySoundsOnInteraction>() != null)
+        {
+            objectInUse.GetComponent<PlaySoundsOnInteraction>().playSound();
+        }
         if (infos.UseBlur)
         {
             volumeProfile.components.Find(component => component.name.Equals("Blur")).active = true;
@@ -104,6 +109,12 @@ public class Interact : MonoBehaviour
                 objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
                 objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
             }
+
+            if (currentText != null && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
+            {
+                Debug.Log(currentText.SoundToPlay);
+                AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
+            }
             GetComponent<Crosshair>().hideCrosshair();
         }
         if (infos.Moveable)
@@ -123,6 +134,10 @@ public class Interact : MonoBehaviour
         if (objectInUse != null && mayInteract)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
+            if (objectInUse.GetComponent<PlaySoundsOnInteraction>() != null)
+            {
+                objectInUse.GetComponent<PlaySoundsOnInteraction>().playSound();
+            }
             if (currentText != null && currentText.ChildNodes.Count > 0 && currentText.Options.Count == 0 && currentText.ChildNodes[0].ShownText != "") currentText = currentText.ChildNodes[0];
             else if (currentText != null && selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
             else currentText = null;
@@ -133,6 +148,10 @@ public class Interact : MonoBehaviour
             }
             if (currentText != null)
             {
+                if (currentText.SoundToPlay != "" && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
+                {
+                    AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
+                }
                 selectedOption = -1;
                 if (currentText != null)
                 {

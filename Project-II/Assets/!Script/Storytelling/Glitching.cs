@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using AudioBuddyTool;
 
 public class Glitching : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class Glitching : MonoBehaviour
         }
         inter.MayInteract = false;
         yield return new WaitForSeconds(Random.Range(2, 4));
+
+        AudioBuddy.Play("vrh_sfx_jumpscare_1", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
         fadeCanvas.enabled = true;
         fadeToBlack = fadeCanvas.GetComponentInChildren<Image>();
         fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 0);
