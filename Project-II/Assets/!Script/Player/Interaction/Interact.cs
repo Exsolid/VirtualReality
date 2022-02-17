@@ -14,9 +14,13 @@ public class Interact : MonoBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private VolumeProfile volumeProfile;
 
-    [SerializeField] private Image shownText;
-    [SerializeField] private Image shownDescriptor;
-    [SerializeField] private List<Image> options;
+    [SerializeField] private Image textBox;
+    [SerializeField] private Image textBoxOptionsSmall;
+    [SerializeField] private Image textBoxOptionsBig;
+    private Text displayText = null;
+    private Text descriptorText = null;
+    private List<Text> options = new List<Text>();
+    private Image currentImage = null;
 
     [SerializeField] private Camera objectCam;
     private RaycastHit hitInteractable;
@@ -88,19 +92,16 @@ public class Interact : MonoBehaviour
         {
             selectedOption = -1;
             currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
-            if (currentText != null)
+            updateTextFields();
+            for (int i = 0; i < currentText.Options.Count; i++)
             {
-                for (int i = 0; i < currentText.Options.Count; i++)
-                {
-                    options[i].enabled = true;
-                    options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
-                }
+                options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
             }
-            shownText.GetComponentInChildren<Text>().text = currentText == null ? infos.ShownText : currentText.ShownText;
-            shownText.enabled = true;
 
-            shownDescriptor.GetComponentInChildren<Text>().text = currentText == null ? infos.Descriptor : currentText.Descriptor;
-            shownDescriptor.enabled = true;
+            displayText.text = currentText == null ? infos.ShownText : currentText.ShownText;
+            currentImage.enabled = true;
+
+            descriptorText.text = currentText == null ? infos.Descriptor : currentText.Descriptor;
             if (currentText != null && currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
             if (currentText != null && currentText.ShowObject)
             {
@@ -141,47 +142,26 @@ public class Interact : MonoBehaviour
             if (currentText != null && currentText.ChildNodes.Count > 0 && currentText.Options.Count == 0 && currentText.ChildNodes[0].ShownText != "") currentText = currentText.ChildNodes[0];
             else if (currentText != null && selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
             else currentText = null;
-            for (int i = 0; i < options.Count; i++)
-            {
-                options[i].enabled = false;
-                options[i].GetComponentInChildren<Text>().text = "";
-            }
+
+            updateTextFields();
             if (currentText != null)
             {
+                selectedOption = -1;
                 if (currentText.SoundToPlay != "" && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
                 {
                     AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
                 }
-                selectedOption = -1;
                 if (currentText != null)
                 {
                     for (int i = 0; i < currentText.Options.Count; i++)
                     {
-                        options[i].enabled = true;
                         options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
                     }
                 }
-                if (selectedOption != -1 && currentText.ChildNodes[selectedOption].ShownText != "") currentText = currentText.ChildNodes[selectedOption];
-                else if (selectedOption != -1) currentText = null;
-                selectedOption = -1;
-                for (int i = 0; i < options.Count; i++)
-                {
-                    options[i].enabled = false;
-                    options[i].GetComponentInChildren<Text>().text = "";
-                }
-                if (currentText != null)
-                {
-                    for (int i = 0; i < currentText.Options.Count; i++)
-                    {
-                        options[i].enabled = true;
-                        options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
-                    }
-                }
-                shownText.GetComponentInChildren<Text>().text = currentText.ShownText;
-                shownText.enabled = true;
+                displayText.text = currentText == null ? infos.ShownText : currentText.ShownText;
+                currentImage.enabled = true;
 
-                shownDescriptor.GetComponentInChildren<Text>().text = currentText.Descriptor;
-                shownDescriptor.enabled = true;
+                descriptorText.text = currentText == null ? infos.Descriptor : currentText.Descriptor;
                 if (currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
                 if (currentText != null && currentText.ShowObject && objectToShow == null)
                 {
@@ -203,10 +183,6 @@ public class Interact : MonoBehaviour
             else
             {
                 GetComponent<Crosshair>().showCrosshair();
-                shownText.GetComponentInChildren<Text>().text = "";
-                shownText.GetComponentInChildren<Image>().enabled = false;
-                shownDescriptor.GetComponentInChildren<Text>().text = "";
-                shownDescriptor.GetComponentInChildren<Image>().enabled = false;
                 if (objectToShow != null)
                 {
                     Destroy(objectToShow);
@@ -251,5 +227,78 @@ public class Interact : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void updateTextFields()
+    {
+        if(displayText != null)
+        {
+            displayText.text = "";
+        }
+
+        if (descriptorText != null)
+        {
+            descriptorText.text = "";
+        }
+
+        for (int i = 0; i < options.Count; i++)
+        {
+            options[i].GetComponentInChildren<Text>().text = "";
+        }
+
+        options.Clear();
+        if (currentImage != null) currentImage.enabled = false;
+
+        textBoxOptionsBig.transform.Find("Option 1 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsBig.transform.Find("Option 2 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsBig.transform.Find("Option 4 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsBig.transform.Find("Option 5 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsBig.transform.Find("Option 3 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsSmall.transform.Find("Option 1 I").GetComponent<Image>().enabled = false;
+        textBoxOptionsSmall.transform.Find("Option 2 I").GetComponent<Image>().enabled = false;
+
+        if (currentText == null)
+        {
+            displayText = null;
+            descriptorText = null;
+            options = new List<Text>();
+            currentImage = null;
+            return;
+        }
+        if (currentText.Options.Count == 0)
+        {
+            currentImage = textBox;
+            displayText = textBox.transform.Find("Text").GetComponent<Text>();
+            descriptorText = textBox.transform.Find("Descriptor").GetComponent<Text>();
+            textBox.transform.SetAsLastSibling();
+        }
+        else if (currentText.Options.Count <= 2)
+        {
+            currentImage = textBoxOptionsSmall;
+            displayText = textBoxOptionsSmall.transform.Find("Text").GetComponent<Text>();
+            descriptorText = textBoxOptionsSmall.transform.Find("Descriptor").GetComponent<Text>();
+            options.Add(textBoxOptionsSmall.transform.Find("Option 1 I").transform.Find("Option 1").GetComponent<Text>());
+            options.Add(textBoxOptionsSmall.transform.Find("Option 2 I").transform.Find("Option 2").GetComponent<Text>());
+            textBoxOptionsSmall.transform.Find("Option 1 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsSmall.transform.Find("Option 2 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsSmall.transform.SetAsLastSibling();
+        }
+        else
+        {
+            currentImage = textBoxOptionsBig;
+            displayText = textBoxOptionsBig.transform.Find("Text").GetComponent<Text>();
+            descriptorText = textBoxOptionsBig.transform.Find("Descriptor").GetComponent<Text>();
+            options.Add(textBoxOptionsBig.transform.Find("Option 1 I").transform.Find("Option 1").GetComponent<Text>());
+            options.Add(textBoxOptionsBig.transform.Find("Option 2 I").transform.Find("Option 2").GetComponent<Text>());
+            options.Add(textBoxOptionsBig.transform.Find("Option 3 I").transform.Find("Option 3").GetComponent<Text>());
+            options.Add(textBoxOptionsBig.transform.Find("Option 4 I").transform.Find("Option 4").GetComponent<Text>());
+            options.Add(textBoxOptionsBig.transform.Find("Option 5 I").transform.Find("Option 5").GetComponent<Text>());
+            textBoxOptionsBig.transform.Find("Option 1 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsBig.transform.Find("Option 2 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsBig.transform.Find("Option 4 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsBig.transform.Find("Option 5 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsBig.transform.Find("Option 3 I").GetComponent<Image>().enabled = true;
+            textBoxOptionsBig.transform.SetAsLastSibling();
+        }
     }
 }

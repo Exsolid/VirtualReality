@@ -353,16 +353,29 @@ public class StateManager : MonoBehaviour
 
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_SOLVED:
+
+                DialogTreeNode temp2;
                 root = new DialogTreeNode("So? Did you find the answer?", "Cassilda");
                 root.Options.Add("Yes, there is no difference.");
-                root.Options.Add("In Cornwall you add the jam first, then the cream. In Devon it's the other way around.");
-                root.Options.Add("In Cornwall you add the cream first, then the jam. In Devon it's the other way around.");
+                root.Options.Add("Yes, there is a difference.");
                 root.Options.Add("No, I have not.");
                 root.ChildNodes.Add(new DialogTreeNode("No, I don't think that's right. I'm sure it's something different.", "Cassilda"));
-                root.ChildNodes.Add(new DialogTreeNode("Yes, that's it. How could I forget? To find the key to the living room you might want to take a closer look at the vase in the dining room.", "Cassilda"));
-                root.ChildNodes.Add(new DialogTreeNode("No, I don't think that's right. I'm sure it's something different.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("Are you sure? What difference would that be?", "Cassilda"));
                 root.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
+
+                temp2 = root.ChildNodes[0];
+                temp2.ChildNodes.Add(root);
+
                 temp = root.ChildNodes[1];
+                temp.Options.Add("In Cornwall you add the cream first, then the jam. In Devon it's the other way around.");
+                temp.Options.Add("In Cornwall you add the jam first, then the cream. In Devon it's the other way around.");
+                temp.ChildNodes.Add(new DialogTreeNode("No, I don't think that's right. I'm sure it's something different.", "Cassilda"));
+                temp.ChildNodes.Add(new DialogTreeNode("Yes, that's it. How could I forget? To find the key to the living room you might want to take a closer look at the vase in the dining room.", "Cassilda"));
+
+                temp2 = temp.ChildNodes[0];
+                temp2.ChildNodes.Add(root);
+
+                temp = temp.ChildNodes[1];
                 temp.ChildNodes.Add(new DialogTreeNode("I think I remember seeing the key somewhere around there. Good luck!", "Cassilda"));
                 temp.NextState = GameplayStates.CHAPTER_ONE_SOLVED;
                 break;

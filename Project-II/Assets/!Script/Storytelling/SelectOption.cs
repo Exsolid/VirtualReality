@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 
 public class SelectOption : MonoBehaviour, IPointerClickHandler
 {
@@ -15,6 +15,7 @@ public class SelectOption : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Option option;
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (GetComponent<Image>() != null && GetComponent<Image>().enabled == false) return;
         switch (option)
         {
             case Option.One:
