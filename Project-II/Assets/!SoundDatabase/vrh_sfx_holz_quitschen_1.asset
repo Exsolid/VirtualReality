@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Pitch: 1
-  _file: {fileID: 0}
+  _file: {fileID: 8300000, guid: 4935d760e6500eb4e88401fd02db83a1, type: 3}
   IsLoop: 0
   CustomName: 0
-  FilePath: 
+  FilePath: Assets/!Sound/VRHaus/vrh_sfx_holz_quitschen_1.wav
