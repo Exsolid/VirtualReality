@@ -14,6 +14,8 @@ public class Glitching : MonoBehaviour
     private Image fadeToBlack;
     private bool onceFinal;
     private bool onceClueOne;
+    private AudioBuddySpeaker speaker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class Glitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (speaker != null) speaker.transform.position = gameObject.transform.position;
         if (GameplayStates.CHAPTER_TWO_TALK_TWO == GetComponent<StateManager>().CurrentState  && !onceFinal)
         {
             StartCoroutine(finishScene());
@@ -45,7 +48,7 @@ public class Glitching : MonoBehaviour
         inter.MayInteract = false;
         yield return new WaitForSeconds(Random.Range(2, 4));
 
-        AudioBuddy.Play("vrh_sfx_jumpscare_1", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
+        speaker = AudioBuddy.Play("vrh_sfx_jumpscare_1", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
         fadeCanvas.enabled = true;
         fadeToBlack = fadeCanvas.GetComponentInChildren<Image>();
         fadeToBlack.color = new Color(fadeToBlack.color.r, fadeToBlack.color.g, fadeToBlack.color.b, 0);
@@ -99,6 +102,7 @@ public class Glitching : MonoBehaviour
         }
         inter.MayInteract = false;
         yield return new WaitForSeconds(Random.Range(2, 4));
+        speaker = AudioBuddy.Play("pl_sfx_pc_5", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
 
         float screenDiv = glitch._ScreenDivisions.value;

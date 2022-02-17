@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Pitch: 1
-  _file: {fileID: 8300000, guid: 94f2755cc78a536439a4dc51f1fcd22e, type: 3}
+  _file: {fileID: 8300000, guid: 365ed41a7d2804d4bbbdb8b866b3f19c, type: 3}
   IsLoop: 0
   CustomName: 0
   FilePath: Assets/!Sound/VRHaus/vrh_sfx_jumpscare_1.wav
