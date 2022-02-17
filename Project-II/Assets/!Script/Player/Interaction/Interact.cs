@@ -93,9 +93,12 @@ public class Interact : MonoBehaviour
             selectedOption = -1;
             currentText = GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root;
             updateTextFields();
-            for (int i = 0; i < currentText.Options.Count; i++)
+            if(currentText != null)
             {
-                options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
+                for (int i = 0; i < currentText.Options.Count; i++)
+                {
+                    options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
+                }
             }
 
             displayText.text = currentText == null ? infos.ShownText : currentText.ShownText;
@@ -259,10 +262,10 @@ public class Interact : MonoBehaviour
 
         if (currentText == null)
         {
-            displayText = null;
-            descriptorText = null;
-            options = new List<Text>();
-            currentImage = null;
+            currentImage = textBox;
+            displayText = textBox.transform.Find("Text").GetComponent<Text>();
+            descriptorText = textBox.transform.Find("Descriptor").GetComponent<Text>();
+            textBox.transform.SetAsLastSibling();
             return;
         }
         if (currentText.Options.Count == 0)
