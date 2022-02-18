@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectOption : MonoBehaviour, IPointerClickHandler
+public class SelectOption : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
+    [SerializeField] private Image pointer;
     enum Option
     {
         One,
@@ -39,5 +40,10 @@ public class SelectOption : MonoBehaviour, IPointerClickHandler
                     FindObjectOfType<Interact>().resetInteraction();
                 break;
         }
+    }
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        if(pointer.enabled && (GetComponent<Text>() != null && GetComponent<Text>().text != null && GetComponent<Text>().text != "") ||
+            pointer.enabled && (GetComponentInChildren<Text>() != null && GetComponentInChildren<Text>().text != null && GetComponentInChildren<Text>().text != "")) pointer.transform.position = new Vector3(pointer.transform.position.x, gameObject.transform.position.y, pointer.transform.position.z);
     }
 }

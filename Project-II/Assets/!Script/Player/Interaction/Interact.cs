@@ -17,6 +17,7 @@ public class Interact : MonoBehaviour
     [SerializeField] private Image textBox;
     [SerializeField] private Image textBoxOptionsSmall;
     [SerializeField] private Image textBoxOptionsBig;
+    [SerializeField] private Image pointer;
     private Text displayText = null;
     private Text descriptorText = null;
     private List<Text> options = new List<Text>();
@@ -260,6 +261,8 @@ public class Interact : MonoBehaviour
         textBoxOptionsSmall.transform.Find("Option 1 I").GetComponent<Image>().enabled = false;
         textBoxOptionsSmall.transform.Find("Option 2 I").GetComponent<Image>().enabled = false;
 
+        pointer.enabled = false;
+
         if (currentText == null)
         {
             currentImage = textBox;
@@ -285,6 +288,8 @@ public class Interact : MonoBehaviour
             textBoxOptionsSmall.transform.Find("Option 1 I").GetComponent<Image>().enabled = true;
             textBoxOptionsSmall.transform.Find("Option 2 I").GetComponent<Image>().enabled = true;
             textBoxOptionsSmall.transform.SetAsLastSibling();
+            pointer.enabled = true;
+            pointer.transform.SetAsLastSibling();
         }
         else
         {
@@ -302,6 +307,8 @@ public class Interact : MonoBehaviour
             textBoxOptionsBig.transform.Find("Option 5 I").GetComponent<Image>().enabled = true;
             textBoxOptionsBig.transform.Find("Option 3 I").GetComponent<Image>().enabled = true;
             textBoxOptionsBig.transform.SetAsLastSibling();
+            pointer.enabled = true;
+            pointer.transform.SetAsLastSibling();
         }
     }
 }
