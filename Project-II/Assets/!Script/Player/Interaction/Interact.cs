@@ -290,6 +290,7 @@ public class Interact : MonoBehaviour
             textBoxOptionsSmall.transform.SetAsLastSibling();
             pointer.enabled = true;
             pointer.transform.SetAsLastSibling();
+            pointer.transform.position = new Vector3(pointer.transform.position.x, textBoxOptionsSmall.transform.Find("Option 1 I").transform.position.y, pointer.transform.position.z);
         }
         else
         {
@@ -309,6 +310,7 @@ public class Interact : MonoBehaviour
             textBoxOptionsBig.transform.SetAsLastSibling();
             pointer.enabled = true;
             pointer.transform.SetAsLastSibling();
+            pointer.transform.position = new Vector3(pointer.transform.position.x, textBoxOptionsBig.transform.Find("Option 1 I").transform.position.y, pointer.transform.position.z);
         }
     }
 }
