@@ -8,6 +8,8 @@ public class PlaySoundsOnInteraction : MonoBehaviour
 
     [SerializeField] private List<string> nameOfSounds;
     [SerializeField] private bool isMusic;
+    [SerializeField] float volumeReduction = 1;
+
     private AudioBuddySpeaker speaker;
     private float timer;
     private int rand;
@@ -15,9 +17,9 @@ public class PlaySoundsOnInteraction : MonoBehaviour
     private void Update()
     {
         float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
-        if (speaker != null && speaker.SourcePlayer.volume != volumeMulti)
+        if (speaker != null && speaker.SourcePlayer.volume != volumeMulti * volumeReduction)
         {
-            speaker.updateVolume(volumeMulti);
+            speaker.updateVolume(volumeMulti * volumeReduction);
         }
         timer -= Time.deltaTime;
     }
@@ -28,7 +30,7 @@ public class PlaySoundsOnInteraction : MonoBehaviour
         {
             rand = Random.Range(0, nameOfSounds.Count);
             float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
-            speaker = AudioBuddy.Play(nameOfSounds[rand], volumeMulti, gameObject);
+            speaker = AudioBuddy.Play(nameOfSounds[rand], volumeMulti * volumeReduction, gameObject);
             timer = AudioBuddy.FindSoundByName(nameOfSounds[rand]).GetDuration();
         }
     }
