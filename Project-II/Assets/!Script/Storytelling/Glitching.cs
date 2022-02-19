@@ -101,7 +101,7 @@ public class Glitching : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         inter.MayInteract = false;
-        yield return new WaitForSeconds(Random.Range(2, 4));
+        yield return new WaitForSeconds(1);
         speaker = AudioBuddy.Play("pl_sfx_pc_5", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
 
