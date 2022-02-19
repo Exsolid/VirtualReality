@@ -13,5 +13,6 @@ public enum StoryObjects
     Richard,
     TeaBook,
     Drawings,
-    Vase
+    Vase,
+    Door
 }

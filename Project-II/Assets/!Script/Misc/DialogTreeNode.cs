@@ -16,6 +16,8 @@ public class DialogTreeNode
     private GameplayStates nextState;
     public bool ShowObject { get { return showObject; } set { showObject = value; } }
     private bool showObject;
+    public bool IsMoveable { get { return isMoveable; } set { isMoveable = value; } }
+    private bool isMoveable;
     public string SoundToPlay { get { return soundToPlay; } set { soundToPlay = value; } }
     private string soundToPlay;
     public DialogTreeNode(string shownText, string descriptor)

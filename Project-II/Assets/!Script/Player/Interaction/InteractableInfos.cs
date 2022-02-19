@@ -16,6 +16,8 @@ public class InteractableInfos : MonoBehaviour
     [SerializeField] private string descriptor;
     public bool Moveable { get { return moveable; } set { moveable = value; } }
     [SerializeField] private bool moveable;
+    public bool InvertMoveableDirection { get { return invertMoveableDirection; } set { invertMoveableDirection = value; } }
+    [SerializeField] private bool invertMoveableDirection;
     public StoryObjects StoryObject { get { return storyObject; }}
     [SerializeField] private StoryObjects storyObject; 
     public string GotoScene { get { return gotoScene; } set { gotoScene = value; } }

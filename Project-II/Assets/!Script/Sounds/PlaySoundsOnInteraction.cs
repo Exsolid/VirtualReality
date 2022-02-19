@@ -8,7 +8,9 @@ public class PlaySoundsOnInteraction : MonoBehaviour
 
     [SerializeField] private List<string> nameOfSounds;
     [SerializeField] private bool isMusic;
-    [SerializeField] float volumeReduction = 1;
+    [SerializeField] private float volumeReduction = 1;
+
+    [SerializeField] private GameplayStates playableAfter;
 
     private AudioBuddySpeaker speaker;
     private float timer;
@@ -16,6 +18,7 @@ public class PlaySoundsOnInteraction : MonoBehaviour
 
     private void Update()
     {
+        if (FindObjectOfType<StateManager>().CurrentState <= playableAfter) return;
         float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         if (speaker != null && speaker.SourcePlayer.volume != volumeMulti * volumeReduction)
         {
@@ -26,6 +29,7 @@ public class PlaySoundsOnInteraction : MonoBehaviour
 
     public void playSound()
     {
+        if (FindObjectOfType<StateManager>().CurrentState <= playableAfter) return;
         if(timer <= 0)
         {
             rand = Random.Range(0, nameOfSounds.Count);

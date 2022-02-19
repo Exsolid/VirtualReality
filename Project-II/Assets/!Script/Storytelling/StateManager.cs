@@ -55,6 +55,9 @@ public class StateManager : MonoBehaviour
             case StoryObjects.Vase:
                 infos = getVaseStory(infos);
                 break;
+            case StoryObjects.Door:
+                infos = getDoorStory(infos);
+                break;
             default:
                 break;
         }
@@ -643,6 +646,32 @@ public class StateManager : MonoBehaviour
             rotateTo = richard.transform.position;
             rotateTo.y += 1.25f;
             infos.TalkingPoint = rotateTo;
+        }
+        infos.Root = root;
+        return infos;
+    }
+
+    private StoryInfos getDoorStory(StoryInfos infos)
+    {
+        DialogTreeNode root = null;
+        DialogTreeNode temp;
+        Vector3 rotateTo = Vector3.zero;
+        switch (currentState)
+        {
+            case GameplayStates.CHAPTER_ONE_SOLVED:
+            case GameplayStates.INTRO:
+            case GameplayStates.CHAPTER_ONE:
+            case GameplayStates.CHAPTER_ONE_UNSOLVED:
+            case GameplayStates.CHAPTER_ONE_CLUE_TWO:
+            case GameplayStates.CHAPTER_ONE_CLUE_ONE:
+                root = new DialogTreeNode("It is locked.", "A Door");
+                root.SoundToPlay = "vrh_sfx_tür_öffnen";
+                break;
+            case GameplayStates.CHAPTER_TWO:
+            case GameplayStates.CHAPTER_TWO_TALK_ONE:
+                root = new DialogTreeNode("", "");
+                root.IsMoveable = true;
+                break;
         }
         infos.Root = root;
         return infos;

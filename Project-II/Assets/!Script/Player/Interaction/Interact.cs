@@ -73,22 +73,6 @@ public class Interact : MonoBehaviour
         {
             objectInUse.GetComponent<PlaySoundsOnInteraction>().playSound();
         }
-        if (infos.UseBlur)
-        {
-            volumeProfile.components.Find(component => component.name.Equals("Blur")).active = true;
-            objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
-            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
-            objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
-        }
-        if (infos.FocusOnObject && (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals("")))
-        {
-            gameObject.GetComponent<Movement>().LockRotation = true;
-            gameObject.GetComponent<Movement>().LockPosition = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-            if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint != Vector3.zero) GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
-            else GetComponent<Movement>().rotateTo(objectInUse.transform.position + infos.RepositionFocus);
-        }
         if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals(""))
         {
             selectedOption = -1;
@@ -101,9 +85,8 @@ public class Interact : MonoBehaviour
                     options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
                 }
             }
-
             displayText.text = currentText == null ? infos.ShownText : currentText.ShownText;
-            currentImage.enabled = true;
+            if (currentText != null && currentText.ShownText != "" || infos.ShownText != "") currentImage.enabled = true;
 
             descriptorText.text = currentText == null ? infos.Descriptor : currentText.Descriptor;
             if (currentText != null && currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
@@ -114,19 +97,37 @@ public class Interact : MonoBehaviour
                 objectToShow.layer = LayerMask.NameToLayer(interactingLayerName);
                 objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
             }
-
+            if (currentText != null && currentText.ShownText != "" || infos.ShownText != "") GetComponent<Crosshair>().hideCrosshair();
             if (currentText != null && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
             {
-                Debug.Log(currentText.SoundToPlay);
                 AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
             }
-            GetComponent<Crosshair>().hideCrosshair();
+            if (currentText != null)
+            {
+                infos.Moveable = currentText.IsMoveable;
+            }
         }
         if (infos.Moveable)
         {
             Rigidbody rb = objectInUse.GetComponent<Rigidbody>();
-            rb.AddTorque(Vector3.one * 20 * Mathf.Sign(transform.position.x - objectInUse.transform.position.x));
+            rb.AddTorque(Vector3.one * 15 * Mathf.Sign(transform.position.x - objectInUse.transform.position.x) * (infos.InvertMoveableDirection ? -1 : 1));
             objectInUse = null;
+        }
+        if (infos.UseBlur && !infos.Moveable)
+        {
+            volumeProfile.components.Find(component => component.name.Equals("Blur")).active = true;
+            objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
+            Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
+            objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
+        }
+        if (infos.FocusOnObject && (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals("")) && !infos.Moveable)
+        {
+            gameObject.GetComponent<Movement>().LockRotation = true;
+            gameObject.GetComponent<Movement>().LockPosition = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            if (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint != Vector3.zero) GetComponent<Movement>().rotateTo(GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).TalkingPoint);
+            else GetComponent<Movement>().rotateTo(objectInUse.transform.position + infos.RepositionFocus);
         }
         if (infos.GotoScene != "")
         {
@@ -151,19 +152,12 @@ public class Interact : MonoBehaviour
             if (currentText != null)
             {
                 selectedOption = -1;
-                if (currentText.SoundToPlay != "" && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
+                for (int i = 0; i < currentText.Options.Count; i++)
                 {
-                    AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
-                }
-                if (currentText != null)
-                {
-                    for (int i = 0; i < currentText.Options.Count; i++)
-                    {
-                        options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
-                    }
+                    options[i].GetComponentInChildren<Text>().text = currentText.Options[i];
                 }
                 displayText.text = currentText == null ? infos.ShownText : currentText.ShownText;
-                currentImage.enabled = true;
+                if(currentText != null && currentText.ShownText != "" || infos.ShownText != "") currentImage.enabled = true;
 
                 descriptorText.text = currentText == null ? infos.Descriptor : currentText.Descriptor;
                 if (currentText.NextState != 0) GetComponent<StateManager>().updateCurrentState(currentText.NextState);
@@ -182,6 +176,15 @@ public class Interact : MonoBehaviour
                     Destroy(objectToShow);
                     objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
                 }
+
+                if (currentText != null)
+                {
+                    infos.Moveable = currentText.IsMoveable;
+                }
+                if (currentText != null && currentText.SoundToPlay != "" && currentText.SoundToPlay != "" && currentText.SoundToPlay != null)
+                {
+                    AudioBuddy.Play(currentText.SoundToPlay, PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME));
+                }
                 return;
             }
             else
@@ -193,15 +196,14 @@ public class Interact : MonoBehaviour
                     objectInUse.layer = LayerMask.NameToLayer(interactingLayerName);
                 }
             }
-
-            if (infos.UseBlur)
+            if (infos.UseBlur && !infos.Moveable)
             {
                 volumeProfile.components.Find(component => component.name.Equals("Blur")).active = false;
                 objectInUse.layer = LayerMask.NameToLayer(interactableLayerName);
                 Camera.main.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
                 objectCam.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             }
-            if (infos.FocusOnObject)
+            if (infos.FocusOnObject && !infos.Moveable)
             {
                 gameObject.GetComponent<Movement>().LockRotation = false;
                 gameObject.GetComponent<Movement>().LockPosition = false;
@@ -235,7 +237,8 @@ public class Interact : MonoBehaviour
 
     private void updateTextFields()
     {
-        if(displayText != null)
+        InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
+        if (displayText != null)
         {
             displayText.text = "";
         }
