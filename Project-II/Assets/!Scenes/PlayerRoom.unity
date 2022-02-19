@@ -4595,6 +4595,7 @@ MonoBehaviour:
   - PL - Stasis by Steve Oxen
   - PL - Time Alone by David Renda
   isMusic: 1
+  volumeReduction: 1
 --- !u!1 &772251318
 GameObject:
   m_ObjectHideFlags: 0
@@ -13971,6 +13972,7 @@ MonoBehaviour:
   nameOfSound: pl_sfx_uhr
   isMusic: 0
   shouldLoop: 1
+  volumeReduction: 0.5
 --- !u!1001 &2037257147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30689,6 +30691,7 @@ MonoBehaviour:
   nameOfSound: pl_ambiente_computer
   isMusic: 0
   shouldLoop: 1
+  volumeReduction: 2
 --- !u!1 &5238371028420173776
 GameObject:
   m_ObjectHideFlags: 0
