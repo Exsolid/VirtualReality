@@ -93,7 +93,7 @@ public class StateManager : MonoBehaviour
                 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
                 rotateTo.y += 1.25f;
                 infos.TalkingPoint = rotateTo;
-                temp.NextState = GameplayStates.CHAPTER_ONE;
+                temp.NextState = GameplayStates.INTRO_DOORNOTFOUND;
                 break;
 
             case GameplayStates.CHAPTER_ONE:
@@ -119,6 +119,7 @@ public class StateManager : MonoBehaviour
                 break;
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
+            case GameplayStates.INTRO_DOORNOTFOUND:
                 root = new DialogTreeNode("My friend, can I help you with anything?", "Edgar");
                 root.Options.Add("How was your relationship with Elizabeth?");
                 root.Options.Add("Did Elizabeth ever argue with anyone?");
@@ -171,7 +172,7 @@ public class StateManager : MonoBehaviour
                 rotateTo = (edgar.transform.position + marg.transform.position) / 2;
                 rotateTo.y += 1.25f;
                 infos.TalkingPoint = rotateTo;
-                temp.NextState = GameplayStates.CHAPTER_ONE;
+                temp.NextState = GameplayStates.INTRO_DOORNOTFOUND;
                 break;
             case GameplayStates.CHAPTER_ONE:
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
@@ -197,6 +198,7 @@ public class StateManager : MonoBehaviour
 
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
+            case GameplayStates.INTRO_DOORNOTFOUND:
                 root = new DialogTreeNode("Yes? Do you need anything?", "Margaret");
                 root.Options.Add("How was your relationship with Elizabeth?");
                 root.Options.Add("Did Elizabeth ever argue with anyone?");
@@ -229,9 +231,6 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case GameplayStates.INTRO:
-
-                break;
-
             case GameplayStates.CHAPTER_ONE:
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
@@ -244,7 +243,7 @@ public class StateManager : MonoBehaviour
                 root.Options.Add("Did Elizabeth ever argue with anyone?");
                 root.Options.Add("I don't have any more questions at the moment.");
                 root.ChildNodes.Add(new DialogTreeNode("No, I have not. Sometimes things just go missing in this house, it's really weird.", "Camilla"));
-                root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson", "Camilla"));
+                root.ChildNodes.Add(new DialogTreeNode("I'm Camilla Thompson.", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("I'm not fussed about her, to be honest.", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("Of course, she did. She always thought herself to be better than others and liked to show that.", "Camilla"));
                 root.ChildNodes.Add(new DialogTreeNode("", "Camilla"));
@@ -260,6 +259,7 @@ public class StateManager : MonoBehaviour
 
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
+            case GameplayStates.INTRO_DOORNOTFOUND:
                 root = new DialogTreeNode("Yes??", "Camilla");
                 root.Options.Add("Who are you?");
                 root.Options.Add("How was your relationship with Elizabeth?");
@@ -294,9 +294,25 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case GameplayStates.INTRO:
+            case GameplayStates.INTRO_DOORNOTFOUND:
+                root = new DialogTreeNode("Hello there, you must be the detective Edgar has been talking about! That's so exciting! Of course, I will help however I can.", "Cassilda");
 
+                root.Options.Add("Who are you?");
+                root.Options.Add("How was your relationship with Elizabeth?");
+                root.Options.Add("Did Elizabeth ever argue with anyone?");
+                root.Options.Add("I don't have any more questions at the moment.");
+                root.ChildNodes.Add(new DialogTreeNode("Oh, where are my manners? I am Cassilda Thompson, Margaret’s daughter. Edgar is my stepfather. The grumpy one over there is my twin sister.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("She was a great person, and we were the best of friends, almost inseparable. What happened to her is such a tragedy.", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("Well... Elizabeth could be a handful, and not everyone was as good at dealing with her moods as I was. But we don't want to speak ill of the dead, do we?", "Cassilda"));
+                root.ChildNodes.Add(new DialogTreeNode("", "Cassilda"));
+
+                temp = root.ChildNodes[1];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[2];
+                temp.ChildNodes.Add(root);
+                temp = root.ChildNodes[0];
+                temp.ChildNodes.Add(root);
                 break;
-
             case GameplayStates.CHAPTER_ONE:
                 root = new DialogTreeNode("Hello there, you must be the detective Edgar has been talking about! That's so exciting! Of course, I will help however I can.", "Cassilda");
 
@@ -409,10 +425,8 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case GameplayStates.INTRO:
-
-                break;
-
             case GameplayStates.CHAPTER_ONE:
+            case GameplayStates.INTRO_DOORNOTFOUND:
                 break;
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
@@ -454,6 +468,7 @@ public class StateManager : MonoBehaviour
         switch (currentState)
         {
             case GameplayStates.INTRO:
+            case GameplayStates.INTRO_DOORNOTFOUND:
                 break;
             case GameplayStates.CHAPTER_ONE:
                 break;
@@ -507,10 +522,12 @@ public class StateManager : MonoBehaviour
                 temp.NextState = GameplayStates.CHAPTER_TWO;
                 break;
             case GameplayStates.INTRO:
+            case GameplayStates.INTRO_DOORNOTFOUND:
             case GameplayStates.CHAPTER_ONE:
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
+                break;
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
                 root = new DialogTreeNode("It is round.", "A Vase");
@@ -660,12 +677,14 @@ public class StateManager : MonoBehaviour
         {
             case GameplayStates.CHAPTER_ONE_SOLVED:
             case GameplayStates.INTRO:
+            case GameplayStates.INTRO_DOORNOTFOUND:
             case GameplayStates.CHAPTER_ONE:
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
-                root = new DialogTreeNode("It is locked.", "A Door");
+                root = new DialogTreeNode("It is locked. I should ask for the key.", "A Door");
                 root.SoundToPlay = "vrh_sfx_tür_öffnen";
+                root.NextState = GameplayStates.CHAPTER_ONE;
                 break;
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:

@@ -47,7 +47,7 @@ public class Interact : MonoBehaviour
     {
         if (objectInUse != null && !GetComponent<PauseGame>().IsPaused)
         {
-            if (input.actions[returnActionName].triggered || input.actions[interactActionName].triggered)
+            if ((input.actions[returnActionName].triggered || input.actions[interactActionName].triggered) && hitInteractable.collider.gameObject.GetComponent<InteractableInfos>().InteractableAfter <= GetComponent<StateManager>().CurrentState)
             {
                 resetInteraction();
             }
@@ -67,6 +67,7 @@ public class Interact : MonoBehaviour
 
     public void interact()
     {
+        Debug.Log("First");
         if (!mayInteract) return;
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
         if(objectInUse.GetComponent<PlaySoundsOnInteraction>() != null)
@@ -137,6 +138,7 @@ public class Interact : MonoBehaviour
 
     public void resetInteraction()
     {
+        Debug.Log("Reset");
         if (objectInUse != null && mayInteract)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
