@@ -67,7 +67,6 @@ public class Interact : MonoBehaviour
 
     public void interact()
     {
-        Debug.Log("First");
         if (!mayInteract) return;
         InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();
         if(objectInUse.GetComponent<PlaySoundsOnInteraction>() != null)
@@ -121,7 +120,7 @@ public class Interact : MonoBehaviour
             Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer(interactingLayerName));
             objectCam.cullingMask |= 1 << LayerMask.NameToLayer(interactingLayerName);
         }
-        if (infos.FocusOnObject && (GetComponent<StateManager>().getCurrentInfos(infos.StoryObject).Root != null || !infos.ShownText.Equals("")) && !infos.Moveable)
+        if (infos.FocusOnObject && (currentText != null || !infos.ShownText.Equals("")) && !infos.Moveable)
         {
             gameObject.GetComponent<Movement>().LockRotation = true;
             gameObject.GetComponent<Movement>().LockPosition = true;
@@ -138,7 +137,6 @@ public class Interact : MonoBehaviour
 
     public void resetInteraction()
     {
-        Debug.Log("Reset");
         if (objectInUse != null && mayInteract)
         {
             InteractableInfos infos = objectInUse.GetComponent<InteractableInfos>();

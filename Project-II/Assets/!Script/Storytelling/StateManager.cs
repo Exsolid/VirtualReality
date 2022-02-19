@@ -628,7 +628,7 @@ public class StateManager : MonoBehaviour
                 temp.ChildNodes.Add(root);
                 temp = root.ChildNodes[2];
                 temp.ChildNodes.Add(root);
-                temp = root.ChildNodes[3];
+                temp = root.ChildNodes[0];
                 temp.ChildNodes.Add(root);
 
                 root.NextState = GameplayStates.CHAPTER_TWO_TALK_ONE;
@@ -650,7 +650,7 @@ public class StateManager : MonoBehaviour
                 temp.ChildNodes.Add(root);
                 temp = root.ChildNodes[2];
                 temp.ChildNodes.Add(root);
-                temp = root.ChildNodes[3];
+                temp = root.ChildNodes[0];
                 temp.ChildNodes.Add(root);
 
                 if (!richardFirst) temp.NextState = GameplayStates.CHAPTER_TWO_TALK_TWO;
@@ -675,16 +675,19 @@ public class StateManager : MonoBehaviour
         Vector3 rotateTo = Vector3.zero;
         switch (currentState)
         {
+            case GameplayStates.INTRO_DOORNOTFOUND:
+                root = new DialogTreeNode("It is locked. I should ask for the key.", "A Door");
+                root.SoundToPlay = "vrh_sfx_tür_öffnen";
+                root.NextState = GameplayStates.CHAPTER_ONE;
+                break;
             case GameplayStates.CHAPTER_ONE_SOLVED:
             case GameplayStates.INTRO:
-            case GameplayStates.INTRO_DOORNOTFOUND:
             case GameplayStates.CHAPTER_ONE:
             case GameplayStates.CHAPTER_ONE_UNSOLVED:
             case GameplayStates.CHAPTER_ONE_CLUE_TWO:
             case GameplayStates.CHAPTER_ONE_CLUE_ONE:
                 root = new DialogTreeNode("It is locked. I should ask for the key.", "A Door");
                 root.SoundToPlay = "vrh_sfx_tür_öffnen";
-                root.NextState = GameplayStates.CHAPTER_ONE;
                 break;
             case GameplayStates.CHAPTER_TWO:
             case GameplayStates.CHAPTER_TWO_TALK_ONE:
