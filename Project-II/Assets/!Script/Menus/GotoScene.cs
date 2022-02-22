@@ -3,27 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GotoScene : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] string sceneName;
-    [SerializeField] bool toPrevScene;
+    [SerializeField] Canvas toCanvas;
+    [SerializeField] Canvas parentCanvas;
     [SerializeField] bool resetStory;
-    [SerializeField] RectTransform hideTo;
+    [SerializeField] bool enableGoToOnReturn;
+    [SerializeField] private string returnActionName;
+    [SerializeField] private PlayerInput input;
+    [SerializeField] private Canvas pauseMenuMain;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (hideTo != null)
+        Goto();
+    }
+
+    private void Goto()
+    {
+        if (parentCanvas.enabled)
         {
-            hideTo.SetAsLastSibling();
-            return;
+            if (toCanvas != null)
+            {
+                toCanvas.enabled = true;
+                toCanvas.transform.SetAsLastSibling();
+                parentCanvas.enabled = false;
+                return;
+            }
+            if (resetStory) PlayerPrefs.SetInt(PlayerPrefKeys.GAMEPLAY_STATE, (int)GameplayStates.INTRO);
+            if (sceneName != null && sceneName != "") SceneManager.LoadScene(sceneName);
         }
-        if (toPrevScene)
-        {
-            sceneName = PlayerPrefs.GetString(PlayerPrefKeys.PREV_SCENE);
-        }
-        if(resetStory) PlayerPrefs.SetInt(PlayerPrefKeys.GAMEPLAY_STATE, (int)GameplayStates.INTRO);
-        PlayerPrefs.SetString(PlayerPrefKeys.PREV_SCENE, SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(sceneName);
     }
 }

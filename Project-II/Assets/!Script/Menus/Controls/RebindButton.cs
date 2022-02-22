@@ -16,6 +16,8 @@ public class RebindButton : MonoBehaviour, IPointerClickHandler
     private Text textChild;
 
     private ControlManager manager;
+    [SerializeField] Canvas parentCanvas;
+
     void Start()
     {
         alternateText = "";
@@ -48,8 +50,7 @@ public class RebindButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
-        if (!isSetting)
+        if (!isSetting && parentCanvas.enabled)
         {
             StartCoroutine(setEvent());
             isSetting = true;

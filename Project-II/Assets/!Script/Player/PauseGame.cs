@@ -7,8 +7,9 @@ public class PauseGame : MonoBehaviour
 {
     [SerializeField] private string returnActionName;
     [SerializeField] private PlayerInput input;
-    [SerializeField] private Canvas pauseMenu;
-    [SerializeField] RectTransform mainPause;
+    [SerializeField] private Canvas pauseMenuMain;
+    [SerializeField] private Canvas pauseMenuControls;
+    [SerializeField] private Canvas pauseMenuSound;
     private bool isPaused;
     public bool IsPaused { get { return isPaused; } set { isPaused = value;  } }
     private bool mayPause;
@@ -36,10 +37,24 @@ public class PauseGame : MonoBehaviour
 
     public void togglePause()
     {
-        if (mayPause &&(GetComponent<Interact>() == null || !GetComponent<Interact>().isInteracting()))
+        if (mayPause && (GetComponent<Interact>() == null || !GetComponent<Interact>().isInteracting()))
         {
+            if (pauseMenuControls.enabled)
+            {
+                pauseMenuMain.enabled = true;
+                pauseMenuMain.transform.SetAsLastSibling();
+                pauseMenuControls.enabled = false;
+                return;
+            }
+            if (pauseMenuSound.enabled)
+            {
+                pauseMenuMain.enabled = true;
+                pauseMenuMain.transform.SetAsLastSibling();
+                pauseMenuSound.enabled = false;
+                return;
+            }
             isPaused = !isPaused;
-            pauseMenu.enabled = isPaused;
+            pauseMenuMain.enabled = isPaused;
             if (isPaused)
             {
                 if(cross != null) cross.hideCrosshair();
@@ -53,7 +68,8 @@ public class PauseGame : MonoBehaviour
             else
             {
                 if (cross != null) cross.showCrosshair();
-                mainPause.SetAsLastSibling();
+                pauseMenuControls.enabled = false;
+                pauseMenuSound.enabled = false;
                 GetComponent<Movement>().LockRotation = mayUnlockRotation;
                 GetComponent<Movement>().LockPosition = mayUnlockPosition;
                 Cursor.lockState = CursorLockMode.Locked;

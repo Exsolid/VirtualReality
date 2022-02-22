@@ -15,11 +15,8 @@ MonoBehaviour:
   ReferenceManager: {fileID: 0}
   CollectionAddress: Assets/!SoundDatabase
   _abObjectCollection:
-  - {fileID: 11400000, guid: bc3ca1cdca9ce3d49abd94123056a4c1, type: 2}
   - {fileID: 11400000, guid: b3df2f3800949394790148009bd2df4e, type: 2}
   - {fileID: 11400000, guid: 19c67498aeeffe641848bdeb06523137, type: 2}
-  - {fileID: 11400000, guid: 4c3a6366b8fe6ce44a1fd8bf0afa18d6, type: 2}
-  - {fileID: 11400000, guid: 6c3f99586c4bb264fb42d2a8d3f37446, type: 2}
   - {fileID: 11400000, guid: 7c414ea735f6cca4ba61825d710898d1, type: 2}
   - {fileID: 11400000, guid: 0da63d6afeeaa8346b2fa774c279faed, type: 2}
   - {fileID: 11400000, guid: 71652feefcd5b2a4587a4c5ec08bc21b, type: 2}
@@ -30,7 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d486f327e97bd29428a5632cd9acf942, type: 2}
   - {fileID: 11400000, guid: ac9002d68d5f4bb4a8f2e708092ae0ce, type: 2}
   - {fileID: 11400000, guid: 2098c76374968ac46afa2dc1cf9dd87e, type: 2}
-  - {fileID: 11400000, guid: 6bb05fc371053c64f90a3f1611ca7f91, type: 2}
   - {fileID: 11400000, guid: 994b6ab5e092bcf4f9615f47d04a437c, type: 2}
   - {fileID: 11400000, guid: b47e8322ddb47cc468850608dadf866f, type: 2}
   - {fileID: 11400000, guid: 81247d8e4c7e5de4d9c9a3482bc39b43, type: 2}
@@ -40,15 +36,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1ebe51cc0fd5b244a89a2c7fa389e0d, type: 2}
   - {fileID: 11400000, guid: a7b0525b4f49d8c4a8b5b1f76c7275ff, type: 2}
   - {fileID: 11400000, guid: 0f6543d0e26681541afb317a44fbe0e7, type: 2}
+  - {fileID: 11400000, guid: 4c3a6366b8fe6ce44a1fd8bf0afa18d6, type: 2}
+  - {fileID: 11400000, guid: 6c3f99586c4bb264fb42d2a8d3f37446, type: 2}
   - {fileID: 11400000, guid: d129cfcf6eaed1146a177c6ab261f574, type: 2}
   - {fileID: 11400000, guid: cf63a01578a09c949880b16c00ae599c, type: 2}
   - {fileID: 11400000, guid: 2ed316a2bf5ad5c4e9590ee07e97ed7b, type: 2}
   - {fileID: 11400000, guid: 7ad51b2d6d431ab46b00d9524e16d50d, type: 2}
   - {fileID: 11400000, guid: 35f1cc793c2a46c4fb25030423e27e93, type: 2}
   - {fileID: 11400000, guid: a154bb32b4f912e4690911b274753556, type: 2}
-  - {fileID: 11400000, guid: c8cbb685390665347a6de181fc3269f6, type: 2}
-  - {fileID: 11400000, guid: 84e69661a2a5e094780adad92575cb93, type: 2}
-  - {fileID: 11400000, guid: 213b6e6a88d4cf743b1e36bf7ebe920e, type: 2}
   - {fileID: 11400000, guid: 210216967445f644eaa2d9c22c59fc35, type: 2}
   - {fileID: 11400000, guid: 658a4f29110dcb946a97fa15703b60f9, type: 2}
   - {fileID: 11400000, guid: 9651d4258f403d340b389a1d1a651059, type: 2}
@@ -65,5 +60,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a61082be297898b4888f1b12577553d2, type: 2}
   - {fileID: 11400000, guid: 7ac864efc435bc946b636135f5b80a23, type: 2}
   - {fileID: 11400000, guid: 8ecfa9a2e1c2793499c26fd645685e21, type: 2}
-  Linked: 1
+  Linked: 0
   CreateABOjectsOnClipImport: 1

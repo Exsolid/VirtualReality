@@ -14,6 +14,7 @@ public class SliderSetting : MonoBehaviour
 
     private string pref;
     private Movement playerMovementToUpdate;
+    [SerializeField] Canvas parentCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,7 @@ public class SliderSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        slider.interactable = parentCanvas.enabled;
         if (timer > 0) timer -= Time.deltaTime;
         if (timer < 0 && timer != -10)
         {

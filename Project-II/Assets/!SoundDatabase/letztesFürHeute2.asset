@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Pitch: 1
-  _file: {fileID: 8300000, guid: c98c07ebdf153b44092c1f3e867a7eac, type: 3}
+  _file: {fileID: 0}
   IsLoop: 0
   CustomName: 0
-  FilePath: "Assets/!Music/letztesF\xFCrHeute2.mp3"
+  FilePath: 
