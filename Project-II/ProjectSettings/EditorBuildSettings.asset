@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!Scenes/FinalVRHouse.unity
     guid: adbcf5b5f8e3f3148a45fd640ca0b8d4
-  - enabled: 0
+  - enabled: 1
     path: Assets/!Scenes/Settings_Sound.unity
     guid: 8eed8ebc97b9cb94cb6ccf466f1866cf
-  - enabled: 0
+  - enabled: 1
     path: Assets/!Scenes/Settings_Controls.unity
     guid: 93650c7a791ed4744aaa193c2d130be9
   m_configObjects:

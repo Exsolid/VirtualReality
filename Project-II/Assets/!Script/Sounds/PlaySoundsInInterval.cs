@@ -26,7 +26,7 @@ public class PlaySoundsInInterval : MonoBehaviour
         float volumeMulti = isMusic ? PlayerPrefs.GetFloat(PlayerPrefKeys.MUSIC_VOLUME, 0.5f) : PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME, 0.5f);
         if (speaker != null && speaker.SourcePlayer.volume != volumeMulti * volumeReduction)
         {
-            speaker.SourcePlayer.volume = (volumeMulti * volumeReduction);
+            speaker.updateVolume(volumeMulti * volumeReduction);
         }
         timer -= Time.deltaTime;
         if (timer <= 0)

@@ -15,7 +15,6 @@ MonoBehaviour:
   ReferenceManager: {fileID: 0}
   CollectionAddress: Assets/!SoundDatabase
   _abObjectCollection:
-  - {fileID: 11400000, guid: bc3ca1cdca9ce3d49abd94123056a4c1, type: 2}
   - {fileID: 11400000, guid: b3df2f3800949394790148009bd2df4e, type: 2}
   - {fileID: 11400000, guid: 19c67498aeeffe641848bdeb06523137, type: 2}
   - {fileID: 11400000, guid: 7c414ea735f6cca4ba61825d710898d1, type: 2}
@@ -28,7 +27,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d486f327e97bd29428a5632cd9acf942, type: 2}
   - {fileID: 11400000, guid: ac9002d68d5f4bb4a8f2e708092ae0ce, type: 2}
   - {fileID: 11400000, guid: 2098c76374968ac46afa2dc1cf9dd87e, type: 2}
-  - {fileID: 11400000, guid: 6bb05fc371053c64f90a3f1611ca7f91, type: 2}
   - {fileID: 11400000, guid: 994b6ab5e092bcf4f9615f47d04a437c, type: 2}
   - {fileID: 11400000, guid: b47e8322ddb47cc468850608dadf866f, type: 2}
   - {fileID: 11400000, guid: 81247d8e4c7e5de4d9c9a3482bc39b43, type: 2}
@@ -48,7 +46,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a154bb32b4f912e4690911b274753556, type: 2}
   - {fileID: 11400000, guid: c8cbb685390665347a6de181fc3269f6, type: 2}
   - {fileID: 11400000, guid: 84e69661a2a5e094780adad92575cb93, type: 2}
-  - {fileID: 11400000, guid: 213b6e6a88d4cf743b1e36bf7ebe920e, type: 2}
   - {fileID: 11400000, guid: 210216967445f644eaa2d9c22c59fc35, type: 2}
   - {fileID: 11400000, guid: 658a4f29110dcb946a97fa15703b60f9, type: 2}
   - {fileID: 11400000, guid: 9651d4258f403d340b389a1d1a651059, type: 2}
