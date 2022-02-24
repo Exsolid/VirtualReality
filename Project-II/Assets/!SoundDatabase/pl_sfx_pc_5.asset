@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Volume: 1
   Pitch: 1
-  _file: {fileID: 0}
+  _file: {fileID: 8300000, guid: 60f6ae866d70c4847a0acb1bab1384e0, type: 3}
   IsLoop: 0
   CustomName: 0
-  FilePath: 
+  FilePath: Assets/!Sound/PlayerRoom/pl_sfx_pc_5.wav

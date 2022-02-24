@@ -102,8 +102,9 @@ public class Glitching : MonoBehaviour
         }
         inter.MayInteract = false;
         yield return new WaitForSeconds(1);
-        speaker = AudioBuddy.Play("pl_sfx_pc_5", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = true;
+        speaker = AudioBuddy.Play("pl_sfx_pc_5", PlayerPrefs.GetFloat(PlayerPrefKeys.SOUND_VOLUME), gameObject);
+        Debug.Log("1");
 
         float screenDiv = glitch._ScreenDivisions.value;
         float indention = glitch._IndentionAmount.value;
@@ -118,6 +119,7 @@ public class Glitching : MonoBehaviour
         glitch._IndentionIntensityRight.value = 0;
         glitch._IndentionIntensityLeft.value = 0;
 
+        Debug.Log("2");
         for (int i = 0; i < 7; i += 1)
         {
             glitch._DisplacementIntensity.value += 0.02f;
@@ -125,6 +127,7 @@ public class Glitching : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        Debug.Log("3");
         glitch._DisplacementIntensity.value = displace;
         glitch._NoiseIntensity.value = noise;
         glitch._ScreenDivisions.value = screenDiv;
@@ -133,6 +136,7 @@ public class Glitching : MonoBehaviour
         glitch._IndentionIntensityLeft.value = indentionR;
         glitch._StaticOpacity.value = opac;
         volumeProfile.components.Find(component => component.name.Equals("Glitch")).active = false;
+        Debug.Log("4");
         inter.MayInteract = true;
     }
 }
